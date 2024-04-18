@@ -1,69 +1,23 @@
 import fs from "fs";
-import { KarabinerRules } from "./types";
+import { KarabinerRules, Manipulator, KeyCode } from "./types";
 import { createHyperSubLayers, app, open, rectangle } from "./utils";
+import { hyperKey } from "./rules/hyperKey";
+import { lexiconVim } from "./rules/lexicon-vim";
+import { capsLockAsControlInVSCode } from "./rules/caplock-to-ctrl-vscode";
 
 const rules: KarabinerRules[] = [
-  // Define the Hyper key itself
-  {
-    description: "Hyper Key (⌃⌥⇧⌘)",
-    manipulators: [
-      {
-        description: "Caps Lock -> Hyper Key",
-        from: {
-          key_code: "caps_lock",
-          modifiers: {
-            optional: ["any"],
-          },
-        },
-        to: [
-          {
-            set_variable: {
-              name: "hyper",
-              value: 1,
-            },
-          },
-        ],
-        to_after_key_up: [
-          {
-            set_variable: {
-              name: "hyper",
-              value: 0,
-            },
-          },
-        ],
-        to_if_alone: [
-          {
-            key_code: "escape",
-          },
-        ],
-        type: "basic",
-      },
-      //      {
-      //        type: "basic",
-      //        description: "Disable CMD + Tab to force Hyper Key usage",
-      //        from: {
-      //          key_code: "tab",
-      //          modifiers: {
-      //            mandatory: ["left_command"],
-      //          },
-      //        },
-      //        to: [
-      //          {
-      //            key_code: "tab",
-      //          },
-      //        ],
-      //      },
-    ],
-  },
+  hyperKey,
+  lexiconVim,
+  capsLockAsControlInVSCode,
   ...createHyperSubLayers({
-    spacebar: open(
-      "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
-    ),
+    // spacebar: open(
+    //   "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
+    // ),
     // b = "B"rowse
     b: {
       t: open("https://twitter.com"),
       // Quarterly "P"lan
-      p: open("https://qrtr.ly/plan"),
+      // p: open("https://qrtr.ly/plan"),
       y: open("https://news.ycombinator.com"),
       f: open("https://facebook.com"),
       r: open("https://reddit.com"),
@@ -72,7 +26,7 @@ const rules: KarabinerRules[] = [
     o: {
       1: app("1Password"),
       g: app("Google Chrome"),
-      c: app("Notion Calendar"),
+      // c: app("Notion Calendar"),
       v: app("Visual Studio Code"),
       d: app("Discord"),
       s: app("Slack"),
@@ -87,16 +41,16 @@ const rules: KarabinerRules[] = [
       // "M"essages
       m: app("Texts"),
       f: app("Finder"),
-      r: app("Texts"),
+      // r: app("Texts"),
       // "i"Message
-      i: app("Texts"),
+      // i: app("Texts"),
       p: app("Spotify"),
-      a: app("iA Presenter"),
+      // a: app("iA Presenter"),
       // "W"hatsApp has been replaced by Texts
-      w: open("Texts"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
-      ),
+      // w: open("Texts"),
+      // l: open(
+      //   "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
+      // ),
     },
 
     // w = "Window" via rectangle.app
@@ -236,20 +190,20 @@ const rules: KarabinerRules[] = [
         ],
       },
       // Turn on Elgato KeyLight
-      y: {
-        to: [
-          {
-            shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 1, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-          },
-        ],
-      },
-      h: {
-        to: [
-          {
-            shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 0, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-          },
-        ],
-      },
+      // y: {
+      //   to: [
+      //     {
+      //       shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 1, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
+      //     },
+      //   ],
+      // },
+      // h: {
+      //   to: [
+      //     {
+      //       shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 0, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
+      //     },
+      //   ],
+      // },
       // "D"o not disturb toggle
       d: open(`raycast://extensions/yakitrak/do-not-disturb/toggle`),
     },
@@ -270,22 +224,22 @@ const rules: KarabinerRules[] = [
         to: [{ key_code: "right_arrow" }],
       },
       // Magicmove via homerow.app
-      m: {
-        to: [{ key_code: "f", modifiers: ["right_control"] }],
-      },
-      // Scroll mode via homerow.app
-      s: {
-        to: [{ key_code: "j", modifiers: ["right_control"] }],
-      },
-      d: {
-        to: [{ key_code: "d", modifiers: ["right_shift", "right_command"] }],
-      },
-      u: {
-        to: [{ key_code: "page_down" }],
-      },
-      i: {
-        to: [{ key_code: "page_up" }],
-      },
+      // m: {
+      //   to: [{ key_code: "f", modifiers: ["right_control"] }],
+      // },
+      // // Scroll mode via homerow.app
+      // s: {
+      //   to: [{ key_code: "j", modifiers: ["right_control"] }],
+      // },
+      // d: {
+      //   to: [{ key_code: "d", modifiers: ["right_shift", "right_command"] }],
+      // },
+      // u: {
+      //   to: [{ key_code: "page_down" }],
+      // },
+      // i: {
+      //   to: [{ key_code: "page_up" }],
+      // },
     },
 
     // c = Musi*c* which isn't "m" because we want it to be on the left hand
@@ -304,25 +258,25 @@ const rules: KarabinerRules[] = [
     // r = "Raycast"
     r: {
       n: open("raycast://script-commands/dismiss-notifications"),
-      l: open(
-        "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
-      ),
+      // l: open(
+      //   "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
+      // ),
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
       c: open("raycast://extensions/raycast/system/open-camera"),
       p: open("raycast://extensions/raycast/raycast/confetti"),
       a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
-      s: open("raycast://extensions/peduarte/silent-mention/index"),
+      // s: open("raycast://extensions/peduarte/silent-mention/index"),
       h: open(
         "raycast://extensions/raycast/clipboard-history/clipboard-history"
       ),
-      1: open(
-        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
-      ),
-      2: open(
-        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
-      ),
+      // 1: open(
+      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
+      // ),
+      // 2: open(
+      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
+      // ),
     },
   }),
 ];
