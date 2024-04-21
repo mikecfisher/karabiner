@@ -24,33 +24,31 @@ const rules: KarabinerRules[] = [
     },
     // o = "Open" applications
     o: {
-      1: app("1Password"),
-      g: app("Google Chrome"),
-      // c: app("Notion Calendar"),
-      v: app("Visual Studio Code"),
-      d: app("Discord"),
-      s: app("Slack"),
-      e: app("Superhuman"),
-      n: app("Notion"),
-      t: app("Warp"),
-      // Open todo list managed via *H*ypersonic
-      h: open(
-        "notion://www.notion.so/stellatehq/7b33b924746647499d906c55f89d5026"
-      ),
-      z: app("zoom.us"),
-      // "M"essages
-      m: app("Texts"),
-      f: app("Finder"),
-      // r: app("Texts"),
-      // "i"Message
-      // i: app("Texts"),
-      p: app("Spotify"),
-      // a: app("iA Presenter"),
-      // "W"hatsApp has been replaced by Texts
-      // w: open("Texts"),
-      // l: open(
       //   "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
+      // "i"Message
+      // "M"essages
+      // "W"hatsApp has been replaced by Texts
       // ),
+      // a: app("iA Presenter"),
+      // c: app("Notion Calendar"),
+      // i: app("Texts"),
+      // l: open(
+      // Open todo list managed via *H*ypersonic
+      // r: app("Texts"),
+      // w: open("Texts"),
+      1: app("1Password"),
+      a: app("Arc"),
+      c: app("Visual Studio Code"),
+      d: app("Discord"),
+      e: app("Superhuman"),
+      f: app("Finder"),
+      g: app("Google Chrome"),
+      m: app("Texts"),
+      n: app("Notion"),
+      p: app("Spotify"),
+      s: app("Slack"),
+      t: app("Warp"),
+      z: app("zoom.us"),
     },
 
     // w = "Window" via rectangle.app
