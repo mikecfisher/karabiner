@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tsm rules.ts",
-    "watch": "nodemon --exec yarn build -e ts"
+    "watch": "nodemon --exec yarn build -e ts",
+    "restart:kb": "launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server"
   }
 }

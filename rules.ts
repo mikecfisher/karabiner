@@ -48,6 +48,7 @@ const rules: KarabinerRules[] = [
       p: app("Spotify"),
       s: app("Slack"),
       t: app("Warp"),
+      x: app("Lexicon"),
       z: app("zoom.us"),
     },
 
