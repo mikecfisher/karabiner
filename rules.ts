@@ -10,11 +10,8 @@ const rules: KarabinerRules[] = [
   lexiconVim,
   capsLockAsControlInVSCode,
   ...createHyperSubLayers({
-    // spacebar: open(
-    //   "raycast://extensions/stellate/mxstbr-commands/create-notion-todo"
-    // ),
-    // b = "B"rowse
     b: {
+      g: open("https://google.com"),
       t: open("https://twitter.com"),
       // Quarterly "P"lan
       // p: open("https://qrtr.ly/plan"),
@@ -46,6 +43,7 @@ const rules: KarabinerRules[] = [
       m: app("Texts"),
       n: app("Notion"),
       p: app("Spotify"),
+      r: app("Reflect"),
       s: app("Slack"),
       t: app("Warp"),
       x: app("Lexicon"),
@@ -63,119 +61,20 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      y: rectangle("previous-display"),
-      o: rectangle("next-display"),
       k: rectangle("top-half"),
       j: rectangle("bottom-half"),
       h: rectangle("left-half"),
       l: rectangle("right-half"),
       f: rectangle("maximize"),
-      u: {
-        description: "Window: Previous Tab",
-        to: [
-          {
-            key_code: "tab",
-            modifiers: ["right_control", "right_shift"],
-          },
-        ],
-      },
-      i: {
-        description: "Window: Next Tab",
-        to: [
-          {
-            key_code: "tab",
-            modifiers: ["right_control"],
-          },
-        ],
-      },
-      n: {
-        description: "Window: Next Window",
-        to: [
-          {
-            key_code: "grave_accent_and_tilde",
-            modifiers: ["right_command"],
-          },
-        ],
-      },
-      b: {
-        description: "Window: Back",
-        to: [
-          {
-            key_code: "open_bracket",
-            modifiers: ["right_command"],
-          },
-        ],
-      },
-      // Note: No literal connection. Both f and n are already taken.
-      m: {
-        description: "Window: Forward",
-        to: [
-          {
-            key_code: "close_bracket",
-            modifiers: ["right_command"],
-          },
-        ],
-      },
-      d: {
-        description: "Window: Next display",
-        to: [
-          {
-            key_code: "right_arrow",
-            modifiers: ["right_control", "right_option", "right_command"],
-          },
-        ],
-      },
     },
 
     // s = "System"
     s: {
-      u: {
-        to: [
-          {
-            key_code: "volume_increment",
-          },
-        ],
-      },
-      j: {
-        to: [
-          {
-            key_code: "volume_decrement",
-          },
-        ],
-      },
-      i: {
-        to: [
-          {
-            key_code: "display_brightness_increment",
-          },
-        ],
-      },
-      k: {
-        to: [
-          {
-            key_code: "display_brightness_decrement",
-          },
-        ],
-      },
       l: {
         to: [
           {
             key_code: "q",
             modifiers: ["right_control", "right_command"],
-          },
-        ],
-      },
-      p: {
-        to: [
-          {
-            key_code: "play_or_pause",
-          },
-        ],
-      },
-      semicolon: {
-        to: [
-          {
-            key_code: "fastforward",
           },
         ],
       },
@@ -188,22 +87,6 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      // Turn on Elgato KeyLight
-      // y: {
-      //   to: [
-      //     {
-      //       shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 1, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-      //     },
-      //   ],
-      // },
-      // h: {
-      //   to: [
-      //     {
-      //       shell_command: `curl -H 'Content-Type: application/json' --request PUT --data '{ "numberOfLights": 1, "lights": [ { "on": 0, "brightness": 100, "temperature": 215 } ] }' http://192.168.8.84:9123/elgato/lights`,
-      //     },
-      //   ],
-      // },
-      // "D"o not disturb toggle
       d: open(`raycast://extensions/yakitrak/do-not-disturb/toggle`),
     },
 
@@ -257,25 +140,16 @@ const rules: KarabinerRules[] = [
     // r = "Raycast"
     r: {
       n: open("raycast://script-commands/dismiss-notifications"),
-      // l: open(
-      //   "raycast://extensions/stellate/mxstbr-commands/create-mxs-is-shortlink"
-      // ),
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
+      g: open("raycast://extensions/mblode/google-search/index"),
       c: open("raycast://extensions/raycast/system/open-camera"),
       p: open("raycast://extensions/raycast/raycast/confetti"),
       a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
-      // s: open("raycast://extensions/peduarte/silent-mention/index"),
       h: open(
         "raycast://extensions/raycast/clipboard-history/clipboard-history"
       ),
-      // 1: open(
-      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1"
-      // ),
-      // 2: open(
-      //   "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2"
-      // ),
     },
   }),
 ];
