@@ -1,6 +1,12 @@
 import fs from "fs";
 import { KarabinerRules, Manipulator, KeyCode } from "./types";
-import { createHyperSubLayers, app, open, rectangle } from "./utils";
+import {
+  createHyperSubLayers,
+  app,
+  open,
+  rectangle,
+  raycastWindow,
+} from "./utils";
 import { hyperKey } from "./rules/hyperKey";
 import { lexiconVim } from "./rules/lexicon-vim";
 import { capsLockAsControlInVSCode } from "./rules/caplock-to-ctrl-vscode";
@@ -63,11 +69,12 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      k: rectangle("top-half"),
-      j: rectangle("bottom-half"),
-      h: rectangle("left-half"),
-      l: rectangle("right-half"),
-      f: rectangle("maximize"),
+      c: raycastWindow("center-two-thirds"),
+      k: raycastWindow("top-half"),
+      j: raycastWindow("bottom-half"),
+      h: raycastWindow("left-half"),
+      l: raycastWindow("right-half"),
+      f: raycastWindow("maximize"),
     },
 
     // s = "System"
