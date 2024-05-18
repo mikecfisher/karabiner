@@ -28,17 +28,8 @@ const rules: KarabinerRules[] = [
     // o = "Open" applications
     o: {
       //   "raycast://extensions/stellate/mxstbr-commands/open-mxs-is-shortlink"
-      // "i"Message
-      // "M"essages
-      // "W"hatsApp has been replaced by Texts
-      // ),
       // a: app("iA Presenter"),
-      // c: app("Notion Calendar"),
-      // i: app("Texts"),
       // l: open(
-      // Open todo list managed via *H*ypersonic
-      // r: app("Texts"),
-      // w: open("Texts"),
       1: app("1Password"),
       a: app("Ableton Live 12 Suite"),
       b: app("Arc"),
@@ -47,6 +38,7 @@ const rules: KarabinerRules[] = [
       e: app("Superhuman"),
       f: app("Finder"),
       g: app("Google Chrome"),
+      i: app("ChatGPT"),
       m: app("Texts"),
       n: app("Notion"),
       p: app("Spotify"),
@@ -69,6 +61,42 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
+      u: {
+        description: "Browser: Previous Tab",
+        to: [
+          {
+            key_code: "tab",
+            modifiers: ["right_control", "right_shift"],
+          },
+        ],
+      },
+      i: {
+        description: "Browser: Next Tab",
+        to: [
+          {
+            key_code: "tab",
+            modifiers: ["right_control"],
+          },
+        ],
+      },
+      b: {
+        description: "Browser: Back",
+        to: [
+          {
+            key_code: "open_bracket",
+            modifiers: ["right_command"],
+          },
+        ],
+      },
+      n: {
+        description: "Browser: Forward",
+        to: [
+          {
+            key_code: "close_bracket",
+            modifiers: ["right_command"],
+          },
+        ],
+      },
       c: raycastWindow("center-two-thirds"),
       k: raycastWindow("top-half"),
       j: raycastWindow("bottom-half"),
@@ -80,6 +108,7 @@ const rules: KarabinerRules[] = [
     // s = "System"
     s: {
       l: {
+        description: "Lock Computer",
         to: [
           {
             key_code: "q",
@@ -88,9 +117,9 @@ const rules: KarabinerRules[] = [
         ],
       },
       e: {
+        description: "Emoji Picker",
         to: [
           {
-            // Emoji picker
             key_code: "spacebar",
             modifiers: ["right_control", "right_command"],
           },
@@ -115,22 +144,22 @@ const rules: KarabinerRules[] = [
         to: [{ key_code: "right_arrow" }],
       },
       // Magicmove via homerow.app
-      // m: {
-      //   to: [{ key_code: "f", modifiers: ["right_control"] }],
-      // },
-      // // Scroll mode via homerow.app
-      // s: {
-      //   to: [{ key_code: "j", modifiers: ["right_control"] }],
-      // },
-      // d: {
-      //   to: [{ key_code: "d", modifiers: ["right_shift", "right_command"] }],
-      // },
-      // u: {
-      //   to: [{ key_code: "page_down" }],
-      // },
-      // i: {
-      //   to: [{ key_code: "page_up" }],
-      // },
+      m: {
+        to: [{ key_code: "f", modifiers: ["right_control"] }],
+      },
+      // Scroll mode via homerow.app
+      s: {
+        to: [{ key_code: "j", modifiers: ["right_control"] }],
+      },
+      d: {
+        to: [{ key_code: "d", modifiers: ["right_shift", "right_command"] }],
+      },
+      u: {
+        to: [{ key_code: "page_down" }],
+      },
+      i: {
+        to: [{ key_code: "page_up" }],
+      },
     },
 
     // c = Musi*c* which isn't "m" because we want it to be on the left hand
@@ -148,17 +177,18 @@ const rules: KarabinerRules[] = [
 
     // r = "Raycast"
     r: {
-      n: open("raycast://script-commands/dismiss-notifications"),
+      a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
+      c: open("raycast://extensions/raycast/system/open-camera"),
       e: open(
         "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols"
       ),
       g: open("raycast://extensions/mblode/google-search/index"),
-      c: open("raycast://extensions/raycast/system/open-camera"),
-      p: open("raycast://extensions/raycast/raycast/confetti"),
-      a: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
       h: open(
         "raycast://extensions/raycast/clipboard-history/clipboard-history"
       ),
+      i: open("raycast://extensions/raycast/raycast-ai/ai-chat"),
+      n: open("raycast://script-commands/dismiss-notifications"),
+      p: open("raycast://extensions/raycast/raycast/confetti"),
     },
   }),
 ];
