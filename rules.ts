@@ -47,7 +47,7 @@ const rules: KarabinerRules[] = [
       t: app("Warp"),
       v: app("Visual Studio Code"),
       x: app("Lexicon"),
-      z: app("zoom.us"),
+      z: app("Zed"),
     },
 
     // w = "Window" via rectangle.app
