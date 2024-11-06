@@ -4,23 +4,22 @@ import {
   createHyperSubLayers,
   app,
   open,
-  rectangle,
   raycastWindow,
+  raycastCustomWindowLayout,
 } from "./utils";
 import { hyperKey } from "./rules/hyperKey";
 import { lexiconVim } from "./rules/lexicon-vim";
-import { capsLockAsControlInVSCode } from "./rules/caplock-to-ctrl-vscode";
+import { hyperKeyInCodeEditors } from "./rules/caplock-to-ctrl-vscode";
 
 const rules: KarabinerRules[] = [
   hyperKey,
   lexiconVim,
-  capsLockAsControlInVSCode,
+  hyperKeyInCodeEditors,
   ...createHyperSubLayers({
     b: {
       g: open("https://google.com"),
       t: open("https://twitter.com"),
       // Quarterly "P"lan
-      // p: open("https://qrtr.ly/plan"),
       y: open("https://news.ycombinator.com"),
       f: open("https://facebook.com"),
       r: open("https://reddit.com"),
@@ -31,13 +30,14 @@ const rules: KarabinerRules[] = [
       // a: app("iA Presenter"),
       // l: open(
       1: app("1Password"),
-      a: app("Ableton Live 12 Suite"),
+      a: app("Akiflow"),
       b: app("Arc"),
-      c: app("Akiflow"),
+      c: app("Cursor"),
       d: app("Discord"),
       e: app("Superhuman"),
       f: app("Finder"),
       g: app("Google Chrome"),
+      h: app("Figma"),
       i: app("ChatGPT"),
       m: app("Texts"),
       n: app("Notion"),
@@ -50,7 +50,7 @@ const rules: KarabinerRules[] = [
       z: app("Zed"),
     },
 
-    // w = "Window" via rectangle.app
+    // w = "Window" via raycast.app
     w: {
       semicolon: {
         description: "Window: Hide",
@@ -103,6 +103,7 @@ const rules: KarabinerRules[] = [
       h: raycastWindow("left-half"),
       l: raycastWindow("right-half"),
       f: raycastWindow("maximize"),
+      r: raycastCustomWindowLayout("React Native Dev"),
     },
 
     // s = "System"

@@ -164,7 +164,7 @@ export function open(what: string): LayerCommand {
 }
 
 /**
- * Shortcut for managing window sizing with Rectangle
+ * Shortcut for managing window sizing with Raycast
  */
 export function rectangle(name: string): LayerCommand {
   return {
@@ -185,6 +185,21 @@ export function raycastWindow(name: string): LayerCommand {
     to: [
       {
         shell_command: `open -g raycast://extensions/raycast/window-management/${name}`,
+      },
+    ],
+    description: `Window: ${name}`,
+  };
+}
+/**
+ * Shortcut for managing custom window layouts with Raycast
+ */
+export function raycastCustomWindowLayout(name: string): LayerCommand {
+  return {
+    to: [
+      {
+        shell_command: `open -g 'raycast://customWindowManagementCommand?name=${encodeURIComponent(
+          name
+        )}'`,
       },
     ],
     description: `Window: ${name}`,
