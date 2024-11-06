@@ -9,7 +9,7 @@ import {
 } from "./utils";
 import { hyperKey } from "./rules/hyperKey";
 import { lexiconVim } from "./rules/lexicon-vim";
-import { hyperKeyInCodeEditors } from "./rules/caplock-to-ctrl-vscode";
+import { hyperKeyInCodeEditors } from "./rules/hyper-key-in-code-editors";
 
 const rules: KarabinerRules[] = [
   hyperKey,

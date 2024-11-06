@@ -1,18 +1,26 @@
+/**
+ * Global Hyper Key Configuration
+ *
+ * This module configures the Caps Lock key to act as a "Hyper Key" - a special modifier
+ * that can be used for custom shortcuts throughout the system.
+ *
+ * Key behaviors:
+ * - Caps Lock never functions as a traditional Caps Lock key
+ * - When pressed alone: Acts as Escape key
+ * - When held: Activates "hyper" mode (tracked via variable)
+ * - Works consistently across all applications
+ *
+ * The hyper state is managed through a variable that other configurations can check,
+ * allowing for application-specific behaviors when the hyper key is active.
+ */
+
 import { KarabinerRules } from "../types";
 
-const generalBundleIdentifiers = ["!^com\\.microsoft\\.VSCode$"]; // Applies to all except VS Code
-
 export const hyperKey: KarabinerRules = {
-  description: "Hyper Key (⌃⌥⇧⌘) except in VS Code VIM",
+  description: "Hyper Key (⌃⌥⇧⌘)",
   manipulators: [
     {
       description: "Caps Lock -> Hyper Key",
-      conditions: [
-        {
-          bundle_identifiers: generalBundleIdentifiers,
-          type: "frontmost_application_unless",
-        },
-      ],
       from: {
         key_code: "caps_lock",
         modifiers: {
