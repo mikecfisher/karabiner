@@ -105,12 +105,11 @@ writeToProfile(
 
     // Raycast layer
     hyperLayer('r', 'raycast-commands').manipulators([
-      map('a').to$("open 'raycast://extensions/raycast-ai/ai-chat'"),
       map('c').to$("open 'raycast://extensions/system/open-camera'"),
       map('e').to$("open 'raycast://extensions/emoji-symbols/search-emoji-symbols'"),
       map('g').to$("open 'raycast://extensions/google-search/index'"),
       map('h').to$("open 'raycast://extensions/clipboard-history/clipboard-history'"),
-      map('i').to$("open 'raycast://extensions/raycast-ai/ai-chat'"),
+      map('i').to$("open 'raycast://extensions/raycast/raycast-ai/ai-chat'"),
       map('n').to$("open 'raycast://extensions/script-commands/dismiss-notifications'"),
       map('p').to$("open 'raycast://extensions/raycast/confetti'"),
     ]),

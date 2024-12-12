@@ -13,8 +13,7 @@
     "tsx": "^4.19.2"
   },
   "scripts": {
-    "generate": "pnpm build && pnpm restart:kb",
-    "build": "tsx rules.ts",
+    "generate": "tsx rules.ts",
     "watch": "nodemon --exec yarn build -e ts",
     "restart:kb": "launchctl kickstart -k gui/`id -u`/org.pqrs.service.agent.karabiner_console_user_server"
   },
