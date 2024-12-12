@@ -67,13 +67,14 @@ writeToProfile(
       map('i').to('tab', ['right_control']),
       map('b').to('open_bracket', ['right_command']),
       map('n').to('close_bracket', ['right_command']),
-      map('c').to$("open 'raycast://extensions/window-management/center-half'"),
-      map('k').to$("open 'raycast://extensions/window-management/top-half'"),
-      map('j').to$("open 'raycast://extensions/window-management/bottom-half'"),
-      map('h').to$("open 'raycast://extensions/window-management/left-half'"),
-      map('l').to$("open 'raycast://extensions/window-management/right-half'"),
-      map('f').to$("open 'raycast://extensions/window-management/maximize'"),
-      map('r').to$("open 'raycast://extensions/customWindowManagementCommand?name=React%20Native%20Dev'"),
+      map('c').to$("open 'raycast://extensions/raycast/window-management/center-half'"),
+
+      map('k').to$("open 'raycast://extensions/raycast/window-management/top-half'"),
+      map('j').to$("open 'raycast://extensions/raycast/window-management/bottom-half'"),
+      map('h').to$("open 'raycast://extensions/raycast/window-management/left-half'"),
+      map('l').to$("open 'raycast://extensions/raycast/window-management/right-half'"),
+      map('f').to$("open 'raycast://extensions/raycast/window-management/maximize'"),
+      map('r').to$("open 'raycast://extensions/raycast/customWindowManagementCommand?name=React%20Native%20Dev'"),
     ]),
 
     // System controls layer
@@ -105,13 +106,13 @@ writeToProfile(
 
     // Raycast layer
     hyperLayer('r', 'raycast-commands').manipulators([
-      map('c').to$("open 'raycast://extensions/system/open-camera'"),
-      map('e').to$("open 'raycast://extensions/emoji-symbols/search-emoji-symbols'"),
-      map('g').to$("open 'raycast://extensions/google-search/index'"),
-      map('h').to$("open 'raycast://extensions/clipboard-history/clipboard-history'"),
+      map('c').to$("open 'raycast://extensions/raycast/system/open-camera'"),
+      map('e').to$("open 'raycast://extensions/raycast/emoji-symbols/search-emoji-symbols'"),
+      map('g').to$("open 'raycast://extensions/mblode/google-search/index'"),
+      map('h').to$("open 'raycast://extensions/raycast/clipboard-history/clipboard-history'"),
       map('i').to$("open 'raycast://extensions/raycast/raycast-ai/ai-chat'"),
-      map('n').to$("open 'raycast://extensions/script-commands/dismiss-notifications'"),
-      map('p').to$("open 'raycast://extensions/raycast/confetti'"),
+      map('n').to$("open 'raycast://script-commands/dismiss-notifications'"),
+      map('p').to$("open 'raycast://extensions/raycast/raycast/confetti'"),
     ]),
   ],
   {
