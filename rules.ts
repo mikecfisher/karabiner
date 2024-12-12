@@ -6,6 +6,7 @@ import {
   open,
   raycastWindow,
   raycastCustomWindowLayout,
+  createKeySwap,
 } from "./utils";
 import { hyperKey } from "./rules/hyperKey";
 import { lexiconVim } from "./rules/lexicon-vim";
@@ -97,7 +98,7 @@ const rules: KarabinerRules[] = [
           },
         ],
       },
-      c: raycastWindow("center-two-thirds"),
+      c: raycastWindow("center-half"),
       k: raycastWindow("top-half"),
       j: raycastWindow("bottom-half"),
       h: raycastWindow("left-half"),

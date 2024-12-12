@@ -1,4 +1,4 @@
-import { To, KeyCode, Manipulator, KarabinerRules } from "./types";
+import { To, KeyCode, Manipulator, KarabinerRules, Conditions } from "./types";
 
 /**
  * Custom way to describe a command in a layer
@@ -211,4 +211,38 @@ export function raycastCustomWindowLayout(name: string): LayerCommand {
  */
 export function app(name: string): LayerCommand {
   return open(`-a '${name}.app'`);
+}
+
+/**
+ * Create a key swap configuration for a specific keyboard
+ */
+export function createKeySwap(
+  vendorId: number,
+  productId: number,
+  description: string
+): KarabinerRules {
+  const deviceCondition: Conditions = {
+    type: "device_if",
+    identifiers: { vendor_id: vendorId, product_id: productId },
+  };
+
+  const createSwap = (from: KeyCode, to: KeyCode): Manipulator => ({
+    type: "basic",
+    from: {
+      key_code: from,
+      modifiers: { optional: ["any"] },
+    },
+    to: [{ key_code: to }],
+    conditions: [deviceCondition],
+  });
+
+  return {
+    description,
+    manipulators: [
+      createSwap("left_command", "left_option"),
+      createSwap("right_command", "right_option"),
+      createSwap("left_option", "left_command"),
+      createSwap("right_option", "right_command"),
+    ],
+  };
 }
