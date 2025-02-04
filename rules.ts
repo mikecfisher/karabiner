@@ -1,10 +1,11 @@
 import { rule, hyperLayer, writeToProfile, ifApp } from 'karabiner.ts';
 import { map, toApp, to$, toKey } from 'karabiner.ts';
+import { RAYCAST, URLS, APP_REGEXES, APP_NAMES } from './constants';
 
 const codeEditors = ifApp([
-  '^com\\.microsoft\\.VSCode$', // VS Code
-  '^com\\.todesktop\\.230313mzl4w4u92$', // Cursor
-  '^dev\\.zed\\.Zed$', // Zed
+  APP_REGEXES.VSCODE, // VS Code
+  APP_REGEXES.CURSOR, // Cursor
+  APP_REGEXES.ZED, // Zed
 ]);
 
 writeToProfile(
@@ -14,7 +15,7 @@ writeToProfile(
     rule('Caps Lock → Hyper').manipulators([map('caps_lock').toHyper().toIfAlone('caps_lock')]),
 
     // Lexicon Vim Navigation
-    rule('Lexicon Vim Navigation', ifApp('^com\\.rekord\\.cloud\\.lexicon$')).manipulators([
+    rule('Lexicon Vim Navigation', ifApp(APP_REGEXES.LEXICON)).manipulators([
       map('j', '⌘').to('down_arrow'),
       map('k', '⌘').to('up_arrow'),
       map('h', '⌘').to('left_arrow'),
@@ -30,34 +31,34 @@ writeToProfile(
 
     // Browser shortcuts layer
     hyperLayer('b', 'browser-shortcuts').manipulators([
-      map('g').to$("open 'https://google.com'"),
-      map('t').to$("open 'https://twitter.com'"),
-      map('y').to$("open 'https://news.ycombinator.com'"),
-      map('f').to$("open 'https://facebook.com'"),
-      map('r').to$("open 'https://reddit.com'"),
+      map('g').to$(URLS.GOOGLE),
+      map('t').to$(URLS.TWITTER),
+      map('y').to$(URLS.HACKER_NEWS),
+      map('f').to$(URLS.FACEBOOK),
+      map('r').to$(URLS.REDDIT),
     ]),
 
     // Application launcher layer
     hyperLayer('o', 'open-apps').manipulators([
-      map('1').toApp('1Password'),
-      map('a').toApp('Akiflow'),
-      map('b').toApp('Arc'),
-      map('c').toApp('Cursor'),
-      map('d').toApp('Discord'),
-      map('e').toApp('Superhuman'),
-      map('f').toApp('Finder'),
-      map('g').toApp('Google Chrome'),
-      map('h').toApp('Figma'),
-      map('i').toApp('ChatGPT'),
-      map('m').toApp('Texts'),
-      map('n').toApp('Notion'),
-      map('p').toApp('Spotify'),
-      map('r').toApp('Reflect'),
-      map('s').toApp('Slack'),
-      map('t').toApp('Warp'),
-      map('v').toApp('Visual Studio Code'),
-      map('x').toApp('Lexicon'),
-      map('z').toApp('Zed'),
+      map('1').toApp(APP_NAMES.PASSWORD_MANAGER),
+      map('a').toApp(APP_NAMES.AKIFLOW),
+      map('b').toApp(APP_NAMES.ARC),
+      map('c').toApp(APP_NAMES.CURSOR),
+      map('d').toApp(APP_NAMES.DISCORD),
+      map('e').toApp(APP_NAMES.SUPERHUMAN),
+      map('f').toApp(APP_NAMES.FINDER),
+      map('g').toApp(APP_NAMES.CHROME),
+      map('h').toApp(APP_NAMES.FIGMA),
+      map('i').toApp(APP_NAMES.CHATGPT),
+      map('m').toApp(APP_NAMES.TEXTS),
+      map('n').toApp(APP_NAMES.NOTION),
+      map('p').toApp(APP_NAMES.SPOTIFY),
+      map('r').toApp(APP_NAMES.REFLECT),
+      map('s').toApp(APP_NAMES.SLACK),
+      map('t').toApp(APP_NAMES.WARP),
+      map('v').toApp(APP_NAMES.VSCODE),
+      map('x').toApp(APP_NAMES.LEXICON),
+      map('z').toApp(APP_NAMES.ZED),
     ]),
 
     // Window management layer
@@ -67,21 +68,20 @@ writeToProfile(
       map('i').to('tab', ['right_control']),
       map('b').to('open_bracket', ['right_command']),
       map('n').to('close_bracket', ['right_command']),
-      map('c').to$("open 'raycast://extensions/raycast/window-management/center-half'"),
-
-      map('k').to$("open 'raycast://extensions/raycast/window-management/top-half'"),
-      map('j').to$("open 'raycast://extensions/raycast/window-management/bottom-half'"),
-      map('h').to$("open 'raycast://extensions/raycast/window-management/left-half'"),
-      map('l').to$("open 'raycast://extensions/raycast/window-management/right-half'"),
-      map('f').to$("open 'raycast://extensions/raycast/window-management/maximize'"),
-      map('r').to$("open 'raycast://extensions/raycast/customWindowManagementCommand?name=React%20Native%20Dev'"),
+      map('c').to$(RAYCAST.WINDOW.CENTER),
+      map('k').to$(RAYCAST.WINDOW.TOP),
+      map('j').to$(RAYCAST.WINDOW.BOTTOM),
+      map('h').to$(RAYCAST.WINDOW.LEFT),
+      map('l').to$(RAYCAST.WINDOW.RIGHT),
+      map('f').to$(RAYCAST.WINDOW.MAXIMIZE),
+      map('r').to$(RAYCAST.WINDOW.CUSTOM(RAYCAST.WINDOW_LAYOUTS.REACT_NATIVE)),
     ]),
 
     // System controls layer
     hyperLayer('s', 'system-controls').manipulators([
       map('l').to('q', ['right_control', 'right_command']),
       map('e').to('spacebar', ['right_control', 'right_command']),
-      map('d').to$("open 'raycast://extensions/do-not-disturb/toggle'"),
+      map('d').to$(RAYCAST.SYSTEM.DO_NOT_DISTURB),
     ]),
 
     // Movement layer
@@ -106,13 +106,13 @@ writeToProfile(
 
     // Raycast layer
     hyperLayer('r', 'raycast-commands').manipulators([
-      map('c').to$("open 'raycast://extensions/raycast/system/open-camera'"),
-      map('e').to$("open 'raycast://extensions/raycast/emoji-symbols/search-emoji-symbols'"),
-      map('g').to$("open 'raycast://extensions/mblode/google-search/index'"),
-      map('h').to$("open 'raycast://extensions/raycast/clipboard-history/clipboard-history'"),
-      map('i').to$("open 'raycast://extensions/raycast/raycast-ai/ai-chat'"),
-      map('n').to$("open 'raycast://script-commands/dismiss-notifications'"),
-      map('p').to$("open 'raycast://extensions/raycast/raycast/confetti'"),
+      map('c').to$(RAYCAST.SYSTEM.CAMERA),
+      map('e').to$(RAYCAST.SYSTEM.EMOJI_SEARCH),
+      map('g').to$(RAYCAST.SYSTEM.GOOGLE_SEARCH),
+      map('h').to$(RAYCAST.SYSTEM.CLIPBOARD_HISTORY),
+      map('i').to$(RAYCAST.SYSTEM.AI_CHAT),
+      map('n').to$(RAYCAST.SYSTEM.DISMISS_NOTIFICATIONS),
+      map('p').to$(RAYCAST.SYSTEM.CONFETTI),
     ]),
   ],
   {

@@ -1069,7 +1069,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/window-management/center-half'"
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/center-half'"
                   }
                 ],
                 "conditions": [
@@ -1092,7 +1092,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/window-management/top-half'"
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/top-half'"
                   }
                 ],
                 "conditions": [
@@ -1115,7 +1115,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/window-management/bottom-half'"
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/bottom-half'"
                   }
                 ],
                 "conditions": [
@@ -1138,7 +1138,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/window-management/left-half'"
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/left-half'"
                   }
                 ],
                 "conditions": [
@@ -1161,7 +1161,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/window-management/right-half'"
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/right-half'"
                   }
                 ],
                 "conditions": [
@@ -1184,7 +1184,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/window-management/maximize'"
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/maximize'"
                   }
                 ],
                 "conditions": [
@@ -1207,7 +1207,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'raycast://extensions/raycast/customWindowManagementCommand?name=React%20Native%20Dev'"
+                    "shell_command": "open -g 'raycast://raycast/customWindowManagementCommand?name=React%20Native%20Dev'"
                   }
                 ],
                 "conditions": [
