@@ -56,6 +56,7 @@ export const APP_NAMES = {
   REFLECT: 'Reflect',
   SLACK: 'Slack',
   WARP: 'Warp',
+  GHOSTTY: 'GHOSTTY',
   VSCODE: 'Visual Studio Code',
   LEXICON: 'Lexicon',
   ZED: 'Zed',

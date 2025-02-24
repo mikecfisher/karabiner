@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       karabiner.ts:
-        specifier: ^1.30.1
-        version: 1.30.1
+        specifier: ^1.31.0
+        version: 1.31.0
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -397,8 +397,8 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
 
-  karabiner.ts@1.30.1:
-    resolution: {integrity: sha512-a7TnErawJyVlq92rfczfVqU6X7Z4PLe2dnQb/VKsHcQz6N4ZXgTgDLv++7xkLAYYZ1Z3/sGFZCT8CsqZDNqf6Q==}
+  karabiner.ts@1.31.0:
+    resolution: {integrity: sha512-adDTAFEDM5lhlOoHDI6yBOaTY/1WBQmukpiFpZPnnIv6uSiZLv2iTtBpCiqYypAfihCaHpl40kf/hc3ut7lR/g==}
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -750,7 +750,7 @@ snapshots:
 
   is-number@7.0.0: {}
 
-  karabiner.ts@1.30.1: {}
+  karabiner.ts@1.31.0: {}
 
   minimatch@3.1.2:
     dependencies:
