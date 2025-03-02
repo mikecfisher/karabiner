@@ -428,7 +428,7 @@
                 },
                 "to": [
                   {
-                    "shell_command": "open 'https://google.com'"
+                    "shell_command": "open 'https://github.com'"
                   }
                 ],
                 "conditions": [
@@ -465,7 +465,7 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "y",
+                  "key_code": "h",
                   "modifiers": {
                     "mandatory": [
                       "any"
@@ -521,6 +521,98 @@
                 "to": [
                   {
                     "shell_command": "open 'https://reddit.com'"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "browser-shortcuts",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "mandatory": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open 'https://perplexity.com'"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "browser-shortcuts",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "y",
+                  "modifiers": {
+                    "mandatory": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open 'https://youtube.com'"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "browser-shortcuts",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open 'https://linkedin.com'"
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "browser-shortcuts",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "open 'https://chatgpt.com'"
                   }
                 ],
                 "conditions": [

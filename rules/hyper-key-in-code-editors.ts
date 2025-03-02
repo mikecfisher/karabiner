@@ -25,6 +25,4 @@ export const hyperKeyInCodeEditors = rule('Code Editor Vim Navigation', codeEdit
 
   // Other common Vim control keys
   map('a', ['left_shift', 'left_command', 'left_control', 'left_option']).to('a', ['control']), // Ctrl+A: Increment number under cursor
-
-  // Additional keys that might be used in Vim
 ]);

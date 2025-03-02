@@ -1,45 +1,31 @@
-import { rule, hyperLayer, writeToProfile, ifApp } from 'karabiner.ts';
-import { map, toApp, to$, toKey } from 'karabiner.ts';
-import { RAYCAST, URLS, APP_REGEXES, APP_NAMES } from './constants';
+import { rule, hyperLayer, writeToProfile } from 'karabiner.ts';
+import { map } from 'karabiner.ts';
+import { RAYCAST, URLS, APP_NAMES } from './constants';
 import { hyperKeyInCodeEditors } from './rules/hyper-key-in-code-editors';
-
-const codeEditors = ifApp([
-  APP_REGEXES.VSCODE, // VS Code
-  APP_REGEXES.CURSOR, // Cursor
-  APP_REGEXES.ZED, // Zed
-]);
+import { lexiconVim } from './rules/lexicon-vim';
 
 writeToProfile(
   'Default',
   [
-    // hyperKeyInCodeEditors,
-
     // First define the hyper key (caps lock → hyper)
     rule('Caps Lock → Hyper').manipulators([map('caps_lock').toHyper().toIfAlone('caps_lock')]),
 
     // Lexicon Vim Navigation
-    rule('Lexicon Vim Navigation', ifApp(APP_REGEXES.LEXICON)).manipulators([
-      map('j', '⌘').to('down_arrow'),
-      map('k', '⌘').to('up_arrow'),
-      map('h', '⌘').to('left_arrow'),
-      map('l', '⌘').to('right_arrow'),
-    ]),
-
-    // Vim-style navigation for code editors
-    // rule('Code Editor Vim Navigation', codeEditors).manipulators([
-    //   // Half-page scrolling
-    //   map('d', ['left_shift', 'left_command', 'left_control', 'left_option']).to('d', ['control']),
-    //   map('u', ['left_shift', 'left_command', 'left_control', 'left_option']).to('u', ['control']),
-    // ]),
+    lexiconVim,
+    // Hyper key in code editors
     hyperKeyInCodeEditors,
 
     // Browser shortcuts layer
     hyperLayer('b', 'browser-shortcuts').manipulators([
-      map('g').to$(URLS.GOOGLE),
+      map('g').to$(URLS.GITHUB),
       map('t').to$(URLS.TWITTER),
-      map('y').to$(URLS.HACKER_NEWS),
+      map('h').to$(URLS.HACKER_NEWS),
       map('f').to$(URLS.FACEBOOK),
       map('r').to$(URLS.REDDIT),
+      map('p').to$(URLS.PERPLEXITY),
+      map('y').to$(URLS.YOUTUBE),
+      map('l').to$(URLS.LINKEDIN),
+      map('c').to$(URLS.CHATGPT),
     ]),
 
     // Application launcher layer

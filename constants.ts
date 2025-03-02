@@ -30,6 +30,11 @@ export const URLS = {
   HACKER_NEWS: "open 'https://news.ycombinator.com'",
   FACEBOOK: "open 'https://facebook.com'",
   REDDIT: "open 'https://reddit.com'",
+  PERPLEXITY: "open 'https://perplexity.com'",
+  GITHUB: "open 'https://github.com'",
+  YOUTUBE: "open 'https://youtube.com'",
+  LINKEDIN: "open 'https://linkedin.com'",
+  CHATGPT: "open 'https://chatgpt.com'",
 } as const;
 
 export const APP_REGEXES = {
