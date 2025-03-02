@@ -14,70 +14,20 @@
  * 2. The hyper variable is set to 1 (Caps Lock is being held)
  */
 
-import { KarabinerRules } from "../types";
+import { rule, map, ifApp, ifVar } from 'karabiner.ts';
+import { APP_REGEXES } from '../constants';
 
-const codeEditorIdentifiers = [
-  "^com\\.todesktop\\.230313mzl4w4u92$",
-  "^com\\.microsoft\\.VSCode$",
-  "^dev\\.zed\\.Zed$",
-];
+// Define code editors as a condition
+const codeEditors = ifApp([APP_REGEXES.VSCODE, APP_REGEXES.CURSOR, APP_REGEXES.ZED]);
 
-export const hyperKeyInCodeEditors: KarabinerRules = {
-  description: "Hyper Key (⌃⌥⇧⌘) in code editors",
-  manipulators: [
-    {
-      description: "Hyper + D -> Control + D in code editors",
-      conditions: [
-        {
-          bundle_identifiers: codeEditorIdentifiers,
-          type: "frontmost_application_if",
-        },
-        {
-          type: "variable_if",
-          name: "hyper",
-          value: 1,
-        },
-      ],
-      from: {
-        key_code: "d",
-        modifiers: {
-          optional: ["any"],
-        },
-      },
-      to: [
-        {
-          key_code: "d",
-          modifiers: ["left_control"],
-        },
-      ],
-      type: "basic",
-    },
-    {
-      description: "Hyper + U -> Control + U in code editors",
-      conditions: [
-        {
-          bundle_identifiers: codeEditorIdentifiers,
-          type: "frontmost_application_if",
-        },
-        {
-          type: "variable_if",
-          name: "hyper",
-          value: 1,
-        },
-      ],
-      from: {
-        key_code: "u",
-        modifiers: {
-          optional: ["any"],
-        },
-      },
-      to: [
-        {
-          key_code: "u",
-          modifiers: ["left_control"],
-        },
-      ],
-      type: "basic",
-    },
-  ],
-};
+// Define hyper variable condition
+const whenHyperActive = ifVar('hyper', 1);
+
+// Create rule for Vim-style half-page scrolling in code editors
+export const hyperKeyInCodeEditors = rule('Vim-style Navigation in Code Editors', codeEditors).manipulators([
+  // Half-page scrolling down: Hyper+D -> Control+D
+  map('d').condition(whenHyperActive).to('d', ['control']),
+
+  // Half-page scrolling up: Hyper+U -> Control+U
+  map('u').condition(whenHyperActive).to('u', ['control']),
+]);
