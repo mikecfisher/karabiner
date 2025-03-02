@@ -16,22 +16,8 @@ const codeEditors = ifApp([APP_REGEXES.VSCODE, APP_REGEXES.CURSOR, APP_REGEXES.Z
 const hyperActive = ifVar('hyper', 1);
 
 // This rule completely overrides Caps Lock in code editors
-export const hyperKeyInCodeEditors = rule('Hyper Key in Code Editors').manipulators([
-  // Completely override Caps Lock in code editors
-  map('caps_lock')
-    .condition(codeEditors)
-    .to([
-      // Set hyper variable for layer activations
-      { set_variable: { name: 'hyper', value: 1 } },
-      // Send just Control, not all Hyper modifiers
-      { key_code: 'left_control' },
-    ])
-    .toAfterKeyUp([{ set_variable: { name: 'hyper', value: 0 } }])
-    .toIfAlone('escape'),
-
-  // Handle specific keys when hyper is active in code editors
-  // Half-page scrolling in Vim mode
-  map('d').condition(codeEditors).condition(hyperActive).to('d', ['control']),
-
-  map('u').condition(codeEditors).condition(hyperActive).to('u', ['control']),
+export const hyperKeyInCodeEditors = rule('Code Editor Vim Navigation', codeEditors).manipulators([
+  // Half-page scrolling
+  map('d', ['left_shift', 'left_command', 'left_control', 'left_option']).to('d', ['control']),
+  map('u', ['left_shift', 'left_command', 'left_control', 'left_option']).to('u', ['control']),
 ]);

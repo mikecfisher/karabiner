@@ -12,7 +12,7 @@ const codeEditors = ifApp([
 writeToProfile(
   'Default',
   [
-    hyperKeyInCodeEditors,
+    // hyperKeyInCodeEditors,
 
     // First define the hyper key (caps lock → hyper)
     rule('Caps Lock → Hyper').manipulators([map('caps_lock').toHyper().toIfAlone('caps_lock')]),
@@ -24,6 +24,15 @@ writeToProfile(
       map('h', '⌘').to('left_arrow'),
       map('l', '⌘').to('right_arrow'),
     ]),
+
+    // Vim-style navigation for code editors
+    // rule('Code Editor Vim Navigation', codeEditors).manipulators([
+    //   // Half-page scrolling
+    //   map('d', ['left_shift', 'left_command', 'left_control', 'left_option']).to('d', ['control']),
+    //   map('u', ['left_shift', 'left_command', 'left_control', 'left_option']).to('u', ['control']),
+    // ]),
+    hyperKeyInCodeEditors,
+
     // Browser shortcuts layer
     hyperLayer('b', 'browser-shortcuts').manipulators([
       map('g').to$(URLS.GOOGLE),
