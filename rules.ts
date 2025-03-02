@@ -1,6 +1,7 @@
 import { rule, hyperLayer, writeToProfile, ifApp } from 'karabiner.ts';
 import { map, toApp, to$, toKey } from 'karabiner.ts';
 import { RAYCAST, URLS, APP_REGEXES, APP_NAMES } from './constants';
+import { hyperKeyInCodeEditors } from './rules/hyper-key-in-code-editors';
 
 const codeEditors = ifApp([
   APP_REGEXES.VSCODE, // VS Code
@@ -11,6 +12,8 @@ const codeEditors = ifApp([
 writeToProfile(
   'Default',
   [
+    hyperKeyInCodeEditors,
+
     // First define the hyper key (caps lock → hyper)
     rule('Caps Lock → Hyper').manipulators([map('caps_lock').toHyper().toIfAlone('caps_lock')]),
 
@@ -21,14 +24,6 @@ writeToProfile(
       map('h', '⌘').to('left_arrow'),
       map('l', '⌘').to('right_arrow'),
     ]),
-
-    // Vim-style navigation for code editors
-    rule('Code Editor Vim Navigation', codeEditors).manipulators([
-      // Half-page scrolling
-      map('d', ['left_shift', 'left_command', 'left_control', 'left_option']).to('d', ['control']),
-      map('u', ['left_shift', 'left_command', 'left_control', 'left_option']).to('u', ['control']),
-    ]),
-
     // Browser shortcuts layer
     hyperLayer('b', 'browser-shortcuts').manipulators([
       map('g').to$(URLS.GOOGLE),
