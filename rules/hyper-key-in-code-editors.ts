@@ -1,23 +1,30 @@
 /**
  * Code Editor-Specific Hyper Key Behaviors
  *
- * This module provides dual functionality for Caps Lock in code editors:
- * 1. Acts as Control for Vim commands (Ctrl+D, Ctrl+U, etc.)
- * 2. Allows Hyper key combinations to still work via variable
+ * This module provides special handling for Hyper+key combinations in code editors,
+ * translating them to Control+key for Vim navigation and commands
  */
 
-import { rule, map, ifApp, ifVar } from 'karabiner.ts';
+import { rule, map, ifApp } from 'karabiner.ts';
 import { APP_REGEXES } from '../constants';
 
 // Define code editors
 const codeEditors = ifApp([APP_REGEXES.VSCODE, APP_REGEXES.CURSOR, APP_REGEXES.ZED]);
 
-// Create a condition for when hyper is active
-const hyperActive = ifVar('hyper', 1);
-
-// This rule completely overrides Caps Lock in code editors
+// This rule intercepts Hyper+key combinations in code editors and translates them to Ctrl+key
 export const hyperKeyInCodeEditors = rule('Code Editor Vim Navigation', codeEditors).manipulators([
-  // Half-page scrolling
-  map('d', ['left_shift', 'left_command', 'left_control', 'left_option']).to('d', ['control']),
-  map('u', ['left_shift', 'left_command', 'left_control', 'left_option']).to('u', ['control']),
+  // Scrolling and navigation
+  map('d', ['left_shift', 'left_command', 'left_control', 'left_option']).to('d', ['control']), // Ctrl+D: Scroll half-page down
+  map('u', ['left_shift', 'left_command', 'left_control', 'left_option']).to('u', ['control']), // Ctrl+U: Scroll half-page up
+
+  // Window navigation (from settings.json <C-h/j/k/l>)
+  map('h', ['left_shift', 'left_command', 'left_control', 'left_option']).to('h', ['control']), // Ctrl+H: Move to left window
+  map('j', ['left_shift', 'left_command', 'left_control', 'left_option']).to('j', ['control']), // Ctrl+J: Move to window below
+  map('k', ['left_shift', 'left_command', 'left_control', 'left_option']).to('k', ['control']), // Ctrl+K: Move to window above
+  map('l', ['left_shift', 'left_command', 'left_control', 'left_option']).to('l', ['control']), // Ctrl+L: Move to right window
+
+  // Other common Vim control keys
+  map('a', ['left_shift', 'left_command', 'left_control', 'left_option']).to('a', ['control']), // Ctrl+A: Increment number under cursor
+
+  // Additional keys that might be used in Vim
 ]);
