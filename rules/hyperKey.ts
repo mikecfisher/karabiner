@@ -14,41 +14,6 @@
  * allowing for application-specific behaviors when the hyper key is active.
  */
 
-import { KarabinerRules } from "../types";
+import { rule, map } from 'karabiner.ts';
 
-export const hyperKey: KarabinerRules = {
-  description: "Hyper Key (⌃⌥⇧⌘)",
-  manipulators: [
-    {
-      description: "Caps Lock -> Hyper Key",
-      from: {
-        key_code: "caps_lock",
-        modifiers: {
-          optional: ["any"],
-        },
-      },
-      to: [
-        {
-          set_variable: {
-            name: "hyper",
-            value: 1,
-          },
-        },
-      ],
-      to_after_key_up: [
-        {
-          set_variable: {
-            name: "hyper",
-            value: 0,
-          },
-        },
-      ],
-      to_if_alone: [
-        {
-          key_code: "escape",
-        },
-      ],
-      type: "basic",
-    },
-  ],
-};
+export const hyperKey = rule('Hyper Key (⌃⌥⇧⌘)').manipulators([map('caps_lock').toHyper().toIfAlone('escape')]);
