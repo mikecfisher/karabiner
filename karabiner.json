@@ -4,6 +4,109 @@
       "complex_modifications": {
         "rules": [
           {
+            "description": "Hyper Key in Code Editors",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "caps_lock"
+                },
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.microsoft\\.VSCode$",
+                      "^com\\.todesktop\\.230313mzl4w4u92$",
+                      "^dev\\.zed\\.Zed$"
+                    ]
+                  }
+                ],
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "hyper",
+                      "value": 1
+                    }
+                  },
+                  {
+                    "key_code": "left_control"
+                  }
+                ],
+                "to_after_key_up": [
+                  {
+                    "set_variable": {
+                      "name": "hyper",
+                      "value": 0
+                    }
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "escape"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "d"
+                },
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.microsoft\\.VSCode$",
+                      "^com\\.todesktop\\.230313mzl4w4u92$",
+                      "^dev\\.zed\\.Zed$"
+                    ]
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "hyper",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "d",
+                    "modifiers": [
+                      "control"
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "u"
+                },
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.microsoft\\.VSCode$",
+                      "^com\\.todesktop\\.230313mzl4w4u92$",
+                      "^dev\\.zed\\.Zed$"
+                    ]
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "hyper",
+                    "value": 1
+                  }
+                ],
+                "to": [
+                  {
+                    "key_code": "u",
+                    "modifiers": [
+                      "control"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Caps Lock → Hyper",
             "manipulators": [
               {
@@ -124,75 +227,6 @@
                     "type": "frontmost_application_if",
                     "bundle_identifiers": [
                       "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "description": "Code Editor Vim Navigation",
-            "manipulators": [
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "d",
-                  "modifiers": {
-                    "mandatory": [
-                      "left_shift",
-                      "left_command",
-                      "left_control",
-                      "left_option"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "d",
-                    "modifiers": [
-                      "control"
-                    ]
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.microsoft\\.VSCode$",
-                      "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "basic",
-                "from": {
-                  "key_code": "u",
-                  "modifiers": {
-                    "mandatory": [
-                      "left_shift",
-                      "left_command",
-                      "left_control",
-                      "left_option"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "key_code": "u",
-                    "modifiers": [
-                      "control"
-                    ]
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.microsoft\\.VSCode$",
-                      "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
                     ]
                   }
                 ]
