@@ -42,6 +42,7 @@ export const APP_REGEXES = {
   CURSOR: '^com\\.todesktop\\.230313mzl4w4u92$',
   ZED: '^dev\\.zed\\.Zed$',
   LEXICON: '^com\\.rekord\\.cloud\\.lexicon$',
+  GHOSTTY: '^com\\.ghostty\\.Ghostty$',
 } as const;
 
 export const APP_NAMES = {

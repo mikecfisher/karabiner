@@ -160,7 +160,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
@@ -192,7 +193,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
@@ -224,7 +226,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
@@ -256,7 +259,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
@@ -288,7 +292,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
@@ -320,7 +325,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
@@ -352,7 +358,8 @@
                     "bundle_identifiers": [
                       "^com\\.microsoft\\.VSCode$",
                       "^com\\.todesktop\\.230313mzl4w4u92$",
-                      "^dev\\.zed\\.Zed$"
+                      "^dev\\.zed\\.Zed$",
+                      "^com\\.ghostty\\.Ghostty$"
                     ]
                   }
                 ]
