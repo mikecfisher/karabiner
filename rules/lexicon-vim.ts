@@ -1,4 +1,5 @@
 import { rule, ifApp, map } from 'karabiner.ts';
+
 import { APP_REGEXES } from '../constants';
 
 export const lexiconVim = rule('Lexicon Vim Navigation', ifApp(APP_REGEXES.LEXICON)).manipulators([

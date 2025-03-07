@@ -1,5 +1,3 @@
-import { type FromKeyParam } from 'karabiner.ts';
-
 /**
  * Menu definition with key, action, and description
  */

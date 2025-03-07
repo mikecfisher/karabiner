@@ -6,6 +6,7 @@
  */
 
 import { rule, map, ifApp } from 'karabiner.ts';
+
 import { APP_REGEXES } from '../constants';
 
 // Define code editors

@@ -1,4 +1,5 @@
 import { hyperLayer, map } from 'karabiner.ts';
+
 import { RAYCAST, URLS, APP_NAMES } from '../constants';
 
 // Browser shortcuts layer

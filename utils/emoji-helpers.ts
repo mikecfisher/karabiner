@@ -1,4 +1,4 @@
-import { toPaste, type FromKeyParam, type ToEvent } from 'karabiner.ts';
+import { toPaste, type FromKeyParam, type ToEvent, type Manipulator } from 'karabiner.ts';
 
 /**
  * Emoji definitions with key mapping, emoji character, and description
@@ -42,9 +42,16 @@ export const generateEmojiNotificationText = (): string => {
 };
 
 /**
+ * Type for a function that creates a leader action
+ * Using only exported types from karabiner.ts
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type LeaderActionFn = (key: FromKeyParam, action: ToEvent | ToEvent[]) => any; // Using 'any' here since we can't access the exact return type
+
+/**
  * Generate emoji manipulators using the provided leaderAction function
  * @param leaderActionFn Function to create a leader action
  */
-export const generateEmojiManipulators = (leaderActionFn: (key: FromKeyParam, action: ToEvent | ToEvent[]) => any) => {
-  return emojiDefinitions.map(({ key, emoji }) => leaderActionFn(key as FromKeyParam, toPaste(emoji)));
+export const generateEmojiManipulators = (leaderActionFn: LeaderActionFn): Manipulator[] => {
+  return emojiDefinitions.map(({ key, emoji }) => leaderActionFn(key as FromKeyParam, toPaste(emoji))) as Manipulator[]; // Cast the result to Manipulator[]
 };

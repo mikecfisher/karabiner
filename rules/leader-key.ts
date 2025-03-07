@@ -2,7 +2,6 @@ import {
   rule,
   mapSimultaneous,
   ifVar,
-  toNotificationMessage,
   toUnsetVar,
   toRemoveNotificationMessage,
   withCondition,
@@ -15,11 +14,11 @@ import {
   toPaste,
   ifApp,
 } from 'karabiner.ts';
+
 import { RAYCAST, URLS, APP_NAMES, APP_REGEXES } from '../constants';
-import { historyNavi, tabNavi, switcher, toClearNotifications } from '../utils/utils';
 import { generateEmojiNotificationText, generateEmojiManipulators } from '../utils/emoji-helpers';
-import { generateMenuNotificationText } from '../utils/notification-menu';
-import { menuCategories } from '../utils/notification-menu';
+import { generateMenuNotificationText , menuCategories } from '../utils/notification-menu';
+import { historyNavi, tabNavi, switcher, toClearNotifications } from '../utils/utils';
 
 /**
  * Leader Key Implementation

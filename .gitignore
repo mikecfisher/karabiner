@@ -1,1 +1,7 @@
 node_modules
+
+# Explicitly include .cursorrules despite global gitignore
+!.cursorrules
+
+# Other ignored files
+dist/
