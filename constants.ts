@@ -43,6 +43,8 @@ export const APP_REGEXES = {
   ZED: '^dev\\.zed\\.Zed$',
   LEXICON: '^com\\.rekord\\.cloud\\.lexicon$',
   GHOSTTY: '^com\\.ghostty\\.Ghostty$',
+  CHROME: '^com\\.google\\.Chrome$',
+  ARC: '^company\\.thebrowser\\.Arc$',
 } as const;
 
 export const APP_NAMES = {
