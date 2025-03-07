@@ -172,7 +172,8 @@ export const leaderKey = rule('Leader Key').manipulators([
    * perform the corresponding system action and exit leader mode.
    */
   withCondition(ifVar('leader', 'system'))([
-    leaderAction('d', to$(RAYCAST.SYSTEM.DO_NOT_DISTURB)),
+    leaderAction('d', toKey('d', ['left_command', 'left_option', 'left_control'])), // Toggle DND
+
     leaderAction('l', toKey('q', ['right_control', 'right_command'])), // Lock screen
     leaderAction('e', toKey('spacebar', ['right_control', 'right_command'])), // Emoji picker
   ]),
