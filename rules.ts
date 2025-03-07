@@ -10,7 +10,7 @@ import {
   musicControls,
   raycastCommands,
 } from './rules/hyper-layers';
-import { leaderKey } from './rules/leader-key';
+import { leaderKey } from './rules/leader-layers';
 import { lexiconVim } from './rules/lexicon-vim';
 
 writeToProfile(

@@ -318,6 +318,36 @@
               {
                 "type": "basic",
                 "from": {
+                  "key_code": "1"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"1Password\".app"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "apps"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
                   "key_code": "a"
                 },
                 "to": [
@@ -438,6 +468,36 @@
               {
                 "type": "basic",
                 "from": {
+                  "key_code": "e"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"Superhuman\".app"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "apps"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
                   "key_code": "f"
                 },
                 "to": [
@@ -528,11 +588,71 @@
               {
                 "type": "basic",
                 "from": {
+                  "key_code": "m"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"Texts\".app"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "apps"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
                   "key_code": "n"
                 },
                 "to": [
                   {
                     "shell_command": "open -a \"Notion\".app"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "apps"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "p"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"Spotify\".app"
                   },
                   {
                     "set_variable": {
@@ -623,6 +743,36 @@
                 "to": [
                   {
                     "shell_command": "open -a \"Visual Studio Code\".app"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "apps"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "x"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"Lexicon\".app"
                   },
                   {
                     "set_variable": {
@@ -1068,11 +1218,11 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "g"
+                  "key_code": "c"
                 },
                 "to": [
                   {
-                    "shell_command": "open 'https://github.com'"
+                    "shell_command": "open 'https://chatgpt.com'"
                   },
                   {
                     "set_variable": {
@@ -1098,11 +1248,11 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "t"
+                  "key_code": "g"
                 },
                 "to": [
                   {
-                    "shell_command": "open 'https://twitter.com'"
+                    "shell_command": "open 'https://github.com'"
                   },
                   {
                     "set_variable": {
@@ -1158,6 +1308,66 @@
               {
                 "type": "basic",
                 "from": {
+                  "key_code": "l"
+                },
+                "to": [
+                  {
+                    "shell_command": "open 'https://linkedin.com'"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "browser"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "p"
+                },
+                "to": [
+                  {
+                    "shell_command": "open 'https://perplexity.com'"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "browser"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
                   "key_code": "r"
                 },
                 "to": [
@@ -1188,11 +1398,11 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "y"
+                  "key_code": "t"
                 },
                 "to": [
                   {
-                    "shell_command": "open 'https://youtube.com'"
+                    "shell_command": "open 'https://twitter.com'"
                   },
                   {
                     "set_variable": {
@@ -1218,11 +1428,11 @@
               {
                 "type": "basic",
                 "from": {
-                  "key_code": "c"
+                  "key_code": "y"
                 },
                 "to": [
                   {
-                    "shell_command": "open 'https://chatgpt.com'"
+                    "shell_command": "open 'https://youtube.com'"
                   },
                   {
                     "set_variable": {

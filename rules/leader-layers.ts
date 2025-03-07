@@ -17,7 +17,7 @@ import {
 
 import { RAYCAST, URLS, APP_NAMES, APP_REGEXES } from '../constants';
 import { generateEmojiNotificationText, generateEmojiManipulators } from '../utils/emoji-helpers';
-import { generateMenuNotificationText , menuCategories } from '../utils/notification-menu';
+import { generateMenuNotificationText, menuCategories } from '../utils/notification-menu';
 import { historyNavi, tabNavi, switcher, toClearNotifications } from '../utils/utils';
 
 /**
@@ -98,17 +98,22 @@ export const leaderKey = rule('Leader Key').manipulators([
    * and exiting leader mode in a single, reusable function.
    */
   withCondition(ifVar('leader', 'apps'))([
+    leaderAction('1', toApp(APP_NAMES.PASSWORD_MANAGER)),
     leaderAction('a', toApp(APP_NAMES.AKIFLOW)),
     leaderAction('b', toApp(APP_NAMES.ARC)),
     leaderAction('c', toApp(APP_NAMES.CURSOR)),
     leaderAction('d', toApp(APP_NAMES.DISCORD)),
+    leaderAction('e', toApp(APP_NAMES.SUPERHUMAN)),
     leaderAction('f', toApp(APP_NAMES.FINDER)),
     leaderAction('g', toApp(APP_NAMES.CHROME)),
     leaderAction('i', toApp(APP_NAMES.CHATGPT)),
+    leaderAction('m', toApp(APP_NAMES.TEXTS)),
     leaderAction('n', toApp(APP_NAMES.NOTION)),
+    leaderAction('p', toApp(APP_NAMES.SPOTIFY)),
     leaderAction('s', toApp(APP_NAMES.SLACK)),
     leaderAction('t', toApp(APP_NAMES.GHOSTTY)),
     leaderAction('v', toApp(APP_NAMES.VSCODE)),
+    leaderAction('x', toApp(APP_NAMES.LEXICON)),
     leaderAction('z', toApp(APP_NAMES.ZED)),
   ]),
 
@@ -150,12 +155,14 @@ export const leaderKey = rule('Leader Key').manipulators([
    * open the corresponding website and exit leader mode.
    */
   withCondition(ifVar('leader', 'browser'))([
-    leaderAction('g', to$(URLS.GITHUB)),
-    leaderAction('t', to$(URLS.TWITTER)),
-    leaderAction('h', to$(URLS.HACKER_NEWS)),
-    leaderAction('r', to$(URLS.REDDIT)),
-    leaderAction('y', to$(URLS.YOUTUBE)),
     leaderAction('c', to$(URLS.CHATGPT)),
+    leaderAction('g', to$(URLS.GITHUB)),
+    leaderAction('h', to$(URLS.HACKER_NEWS)),
+    leaderAction('l', to$(URLS.LINKEDIN)),
+    leaderAction('p', to$(URLS.PERPLEXITY)),
+    leaderAction('r', to$(URLS.REDDIT)),
+    leaderAction('t', to$(URLS.TWITTER)),
+    leaderAction('y', to$(URLS.YOUTUBE)),
   ]),
 
   /**
