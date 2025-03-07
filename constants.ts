@@ -68,4 +68,5 @@ export const APP_NAMES = {
   VSCODE: 'Visual Studio Code',
   LEXICON: 'Lexicon',
   ZED: 'Zed',
+  TEAMS: 'Microsoft Teams',
 } as const;

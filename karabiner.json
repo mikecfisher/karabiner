@@ -800,6 +800,36 @@
               {
                 "type": "basic",
                 "from": {
+                  "key_code": "w"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -a \"Microsoft Teams\".app"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "apps"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
                   "key_code": "x"
                 },
                 "to": [
