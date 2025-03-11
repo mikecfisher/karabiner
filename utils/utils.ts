@@ -3,16 +3,16 @@ import { map } from 'karabiner.ts';
 /** Back/Forward history in most apps. */
 export function historyNavi() {
   return [
-    map('h', '⌃').to('[', '⌘'), // Back
-    map('l', '⌃').to(']', '⌘'), // Forward
+    map('h', 'option').to('[', '⌘'), // Back
+    map('l', 'option').to(']', '⌘'), // Forward
   ];
 }
 
 /** Previous/Next tab in most apps. */
 export function tabNavi() {
   return [
-    map('h', '⌥').to('[', '⌘⇧'), // Previous tab
-    map('l', '⌥').to(']', '⌘⇧'), // Next tab
+    map('h', 'control').to('[', '⌘⇧'), // Previous tab
+    map('l', 'control').to(']', '⌘⇧'), // Next tab
   ];
 }
 
