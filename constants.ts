@@ -44,7 +44,10 @@ export const APP_REGEXES = {
   LEXICON: '^com\\.rekord\\.cloud\\.lexicon$',
   GHOSTTY: '^com\\.ghostty\\.Ghostty$',
   CHROME: '^com\\.google\\.Chrome$',
-  ARC: '^company\\.thebrowser\\.Arc$',
+  ARC: '^company\\.thebrowser\\.Browser$',
+  SAFARI: '^com\\.apple\\.Safari$',
+  ZEN: '^app\\.zen-browser\\.zen$',
+  BRAVE: '^com\\.brave\\.Browser$',
 } as const;
 
 export const APP_NAMES = {

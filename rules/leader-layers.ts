@@ -212,7 +212,10 @@ export const leaderKey = rule('Leader Key').manipulators([
  * - Alt+h/l: Previous/Next tab
  * - Hyper+h/l: Window switching
  */
-export const arcNavigation = rule('Arc Navigation', ifApp(APP_REGEXES.ARC)).manipulators([
+export const browserNavigation = rule(
+  'Browser Navigation',
+  ifApp([APP_REGEXES.ARC, APP_REGEXES.SAFARI, APP_REGEXES.CHROME, APP_REGEXES.ZEN, APP_REGEXES.BRAVE])
+).manipulators([
   ...historyNavi(), // Ctrl+h/l for back/forward
   ...tabNavi(), // Alt+h/l for previous/next tab
   ...switcher(), // Hyper+h/l for window switching
