@@ -89,7 +89,7 @@
                   {
                     "set_notification_message": {
                       "id": "leader",
-                      "text": "(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications"
+                      "text": "(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications (T)iling"
                     }
                   }
                 ],
@@ -279,6 +279,33 @@
                     "set_notification_message": {
                       "id": "leader",
                       "text": "(L)Log (F)Function (I)If (R)Return (T)This"
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "t"
+                },
+                "to": [
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "value": "aerospace"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": "(S)Stack Layout (F)Float Toggle (U)Fullscreen (Z)Balance Sizes (H)Focus Left (J)Focus Down (K)Focus Up (L)Focus Right (⇧H)Move Left (⇧J)Move Down (⇧K)Move Up (⇧L)Move Right (1)Workspace 1 (2)Workspace 2 (3)Workspace 3 (4)Workspace 4 (5)Workspace 5 (B)Workspace B (C)Workspace C (T)Workspace T (⇧(N))Move to (N) (-)Resize -50 (=)Resize +50 (SLASH)Tiles Layout (COMMA)Accordion Layout (SEMICOLON)Service Mode"
                     }
                   }
                 ],
@@ -1255,6 +1282,126 @@
                 "to": [
                   {
                     "shell_command": "open -g 'raycast://extensions/raycast/window-management/right-half'"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "window"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "open_bracket"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/previous-display'"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "window"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "close_bracket"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/next-display'"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "window"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "hyphen"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/previous-desktop'"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "window"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "equal_sign"
+                },
+                "to": [
+                  {
+                    "shell_command": "open -g 'raycast://extensions/raycast/window-management/next-desktop'"
                   },
                   {
                     "set_variable": {
@@ -2422,6 +2569,7 @@
                   "key_code": "h",
                   "modifiers": {
                     "mandatory": [
+                      "control",
                       "option"
                     ]
                   }
@@ -2453,7 +2601,11 @@
                   "key_code": "l",
                   "modifiers": {
                     "mandatory": [
+                      "control",
                       "option"
+                    ],
+                    "optional": [
+                      "command"
                     ]
                   }
                 },
@@ -2606,6 +2758,1186 @@
                       "^app\\.zen-browser\\.zen$",
                       "^com\\.brave\\.Browser$"
                     ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "AeroSpace Commands",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "s"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace layout stack"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "f"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace layout floating"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "u"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace fullscreen"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "z"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace balance-sizes"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "h"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace focus left"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "j"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace focus down"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "k"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace focus up"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace focus right"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move left"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "j",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move down"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move up"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move right"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "1"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace 1"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "2"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace 2"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "3"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace 3"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "4"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace 4"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "5"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace 5"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "b"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace B"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "c"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace C"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "t"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace T"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "1",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace 1"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "2",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace 2"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "3",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace 3"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "4",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace 4"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "5",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace 5"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace B"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace C"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-node-to-workspace T"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "o"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace enable toggle"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "r"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace flatten-workspace-tree"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "f"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace layout floating tiling"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "slash"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace layout tiles horizontal vertical"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "comma"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace layout accordion horizontal vertical"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "hyphen"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace resize smart -50"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "equal_sign"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace resize smart +50"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "tab"
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace workspace-back-and-forth"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
+                  }
+                ]
+              },
+              {
+                "type": "basic",
+                "from": {
+                  "key_code": "tab",
+                  "modifiers": {
+                    "mandatory": [
+                      "shift"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "/opt/homebrew/bin/aerospace move-workspace-to-monitor --wrap-around next"
+                  },
+                  {
+                    "set_variable": {
+                      "name": "leader",
+                      "type": "unset"
+                    }
+                  },
+                  {
+                    "set_notification_message": {
+                      "id": "leader",
+                      "text": ""
+                    }
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "leader",
+                    "value": "aerospace"
                   }
                 ]
               }

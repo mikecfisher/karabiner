@@ -40,7 +40,7 @@ import { historyNavi, tabNavi, switcher, toClearNotifications } from '../utils/u
  */
 
 // Helper function to exit leader mode
-const exitLeader = () => [toUnsetVar('leader'), toRemoveNotificationMessage('leader')];
+export const exitLeader = () => [toUnsetVar('leader'), toRemoveNotificationMessage('leader')];
 
 // Helper function to map a key with an action and exit leader mode
 const leaderAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) => map(key).to(action).to(exitLeader());
@@ -60,7 +60,10 @@ export const leaderKey = rule('Leader Key').manipulators([
   withCondition(ifVar('leader', 0))([
     mapSimultaneous(['l', ';'], undefined, 250)
       .toVar('leader', 1)
-      .toNotificationMessage('leader', '(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications'),
+      .toNotificationMessage(
+        'leader',
+        '(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications (T)iling'
+      ),
   ]),
 
   /**
@@ -147,6 +150,10 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('j', to$(RAYCAST.WINDOW.BOTTOM)),
     leaderAction('k', to$(RAYCAST.WINDOW.TOP)),
     leaderAction('l', to$(RAYCAST.WINDOW.RIGHT)),
+    leaderAction('[', to$(RAYCAST.WINDOW.PREVIOUS_DISPLAY)),
+    leaderAction(']', to$(RAYCAST.WINDOW.NEXT_DISPLAY)),
+    leaderAction('hyphen', to$(RAYCAST.WINDOW.PREVIOUS_DESKTOP)),
+    leaderAction('equal_sign', to$(RAYCAST.WINDOW.NEXT_DESKTOP)),
   ]),
 
   /**
@@ -216,7 +223,7 @@ export const browserNavigation = rule(
   'Browser Navigation',
   ifApp([APP_REGEXES.ARC, APP_REGEXES.SAFARI, APP_REGEXES.CHROME, APP_REGEXES.ZEN, APP_REGEXES.BRAVE])
 ).manipulators([
-  ...historyNavi(), // Ctrl+h/l for back/forward
-  ...tabNavi(), // Alt+h/l for previous/next tab
+  ...historyNavi(), // shift+option+h/l for back/forward
+  ...tabNavi(), // ctrl+h/l for previous/next tab
   ...switcher(), // Hyper+h/l for window switching
 ]);
