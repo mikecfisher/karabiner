@@ -6,6 +6,10 @@ export const RAYCAST = {
     LEFT: "open -g 'raycast://extensions/raycast/window-management/left-half'",
     RIGHT: "open -g 'raycast://extensions/raycast/window-management/right-half'",
     MAXIMIZE: "open -g 'raycast://extensions/raycast/window-management/maximize'",
+    NEXT_DISPLAY: "open -g 'raycast://extensions/raycast/window-management/next-display'",
+    PREVIOUS_DISPLAY: "open -g 'raycast://extensions/raycast/window-management/previous-display'",
+    NEXT_DESKTOP: "open -g 'raycast://extensions/raycast/window-management/next-desktop'",
+    PREVIOUS_DESKTOP: "open -g 'raycast://extensions/raycast/window-management/previous-desktop'",
     CUSTOM: (name: string) =>
       `open -g 'raycast://raycast/customWindowManagementCommand?name=${encodeURIComponent(name)}'`,
   },
