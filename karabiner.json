@@ -143,7 +143,7 @@
                   {
                     "set_notification_message": {
                       "id": "leader",
-                      "text": "(A)Akiflow (B)Browser (C)Cursor (D)Discord (F)Finder (G)Google Chrome (I)ChatGPT (N)Notion (S)Slack (T)Terminal (V)VS Code (Z)Zed"
+                      "text": "(A)Akiflow (B)Browser (C)Cursor (D)Discord (F)Finder (G)Google Chrome (I)ChatGPT (L)Lexicon (N)Notion (P)Perplexity (S)Slack (T)Terminal (V)VS Code (W)Teams (Z)Zed"
                     }
                   }
                 ],
@@ -197,7 +197,7 @@
                   {
                     "set_notification_message": {
                       "id": "leader",
-                      "text": "(C)Center (F)Fullscreen (H)Left (J)Bottom (K)Top (L)Right"
+                      "text": "(C)Center (F)Fullscreen (H)Left (J)Bottom (K)Top (L)Right ([)Previous Display (])Next Display (-)Previous Desktop (=)Next Desktop"
                     }
                   }
                 ],

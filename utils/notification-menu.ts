@@ -67,6 +67,10 @@ export const menuCategories: MenuCategory[] = [
       { key: 'j', description: 'Bottom' },
       { key: 'k', description: 'Top' },
       { key: 'l', description: 'Right' },
+      { key: '[', description: 'Previous Display' },
+      { key: ']', description: 'Next Display' },
+      { key: '-', description: 'Previous Desktop' },
+      { key: '=', description: 'Next Desktop' },
     ],
   },
   {
