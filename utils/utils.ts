@@ -3,8 +3,8 @@ import { map } from 'karabiner.ts';
 /** Back/Forward history in most apps. */
 export function historyNavi() {
   return [
-    map('h', 'option').to('[', '⌘'), // Back
-    map('l', 'option').to(']', '⌘'), // Forward
+    map('h', ['control', 'option']).to('[', '⌘'), // Back
+    map('l', ['control', 'option'], 'command').to(']', '⌘'), // Forward
   ];
 }
 
