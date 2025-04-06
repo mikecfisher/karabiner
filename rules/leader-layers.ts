@@ -113,6 +113,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('m', toApp(APP_NAMES.TEXTS)),
     leaderAction('n', toApp(APP_NAMES.NOTION)),
     leaderAction('p', toApp(APP_NAMES.PERPLEXITY)),
+    leaderAction('r', toApp(APP_NAMES.REFLECT)),
     leaderAction('s', toApp(APP_NAMES.SLACK)),
     leaderAction('t', toApp(APP_NAMES.GHOSTTY)),
     leaderAction('v', toApp(APP_NAMES.VSCODE)),
