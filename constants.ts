@@ -42,24 +42,28 @@ export const URLS = {
 } as const;
 
 export const APP_REGEXES = {
-  VSCODE: '^com\\.microsoft\\.VSCode$',
-  CURSOR: '^com\\.todesktop\\.230313mzl4w4u92$',
-  ZED: '^dev\\.zed\\.Zed$',
-  LEXICON: '^com\\.rekord\\.cloud\\.lexicon$',
-  GHOSTTY: '^com\\.ghostty\\.Ghostty$',
-  CHROME: '^com\\.google\\.Chrome$',
   ARC: '^company\\.thebrowser\\.Browser$',
-  SAFARI: '^com\\.apple\\.Safari$',
-  ZEN: '^app\\.zen-browser\\.zen$',
+  BEEPER: '^com\\.automattic\\.beeper\\.desktop$',
   BRAVE: '^com\\.brave\\.Browser$',
+  CHROME: '^com\\.google\\.Chrome$',
+  CURSOR: '^com\\.todesktop\\.230313mzl4w4u92$',
+  DIA: '^company\\.thebrowser\\.dia$',
+  GHOSTTY: '^com\\.ghostty\\.Ghostty$',
+  LEXICON: '^com\\.rekord\\.cloud\\.lexicon$',
+  SAFARI: '^com\\.apple\\.Safari$',
+  VSCODE: '^com\\.microsoft\\.VSCode$',
+  ZED: '^dev\\.zed\\.Zed$',
+  ZEN: '^app\\.zen-browser\\.zen$',
 } as const;
 
 export const APP_NAMES = {
   AKIFLOW: 'Akiflow',
   ARC: 'Arc',
+  BEEPER: 'Beeper Desktop',
   CHATGPT: 'ChatGPT',
   CHROME: 'Google Chrome',
   CURSOR: 'Cursor',
+  DIA: 'DIA',
   DISCORD: 'Discord',
   FIGMA: 'Figma',
   FINDER: 'Finder',

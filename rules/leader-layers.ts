@@ -1,18 +1,18 @@
 import {
-  rule,
-  mapSimultaneous,
+  ifApp,
   ifVar,
-  toUnsetVar,
-  toRemoveNotificationMessage,
-  withCondition,
   map,
+  mapSimultaneous,
+  rule,
   to$,
   toApp,
   toKey,
-  type ToEvent,
-  type FromKeyParam,
   toPaste,
-  ifApp,
+  toRemoveNotificationMessage,
+  toUnsetVar,
+  type FromKeyParam,
+  type ToEvent,
+  withCondition,
 } from 'karabiner.ts';
 
 import { RAYCAST, URLS, APP_NAMES, APP_REGEXES } from '../constants';
@@ -37,7 +37,8 @@ import { historyNavi, tabNavi, switcher, toClearNotifications } from '../utils/u
  *
  * Visual feedback is provided through notifications at each step.
  * Pressing escape at any point exits leader mode.
- */
+ *ARC
+ **/
 
 // Helper function to exit leader mode
 export const exitLeader = () => [toUnsetVar('leader'), toRemoveNotificationMessage('leader')];
@@ -48,6 +49,7 @@ const leaderAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) => map(key
 // Get emoji notification text and manipulators
 const emojiNotificationText = generateEmojiNotificationText();
 const emojiManipulators = generateEmojiManipulators(leaderAction);
+const leaderKeys = ['.', '/'] as FromKeyParam[];
 
 // Leader Key configuration
 export const leaderKey = rule('Leader Key').manipulators([
@@ -58,7 +60,7 @@ export const leaderKey = rule('Leader Key').manipulators([
    * set the 'leader' variable to 1 (active) and show a notification with available categories.
    */
   withCondition(ifVar('leader', 0))([
-    mapSimultaneous(['l', ';'], undefined, 250)
+    mapSimultaneous([...leaderKeys], undefined, 250)
       .toVar('leader', 1)
       .toNotificationMessage(
         'leader',
@@ -110,7 +112,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('f', toApp(APP_NAMES.FINDER)),
     leaderAction('g', toApp(APP_NAMES.CHROME)),
     leaderAction('i', toApp(APP_NAMES.CHATGPT)),
-    leaderAction('m', toApp(APP_NAMES.TEXTS)),
+    leaderAction('m', toApp(APP_NAMES.BEEPER)),
     leaderAction('n', toApp(APP_NAMES.NOTION)),
     leaderAction('p', toApp(APP_NAMES.PERPLEXITY)),
     leaderAction('r', toApp(APP_NAMES.REFLECT)),

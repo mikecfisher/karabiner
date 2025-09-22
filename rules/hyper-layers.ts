@@ -27,7 +27,7 @@ export const openApps = hyperLayer('o', 'open-apps').manipulators([
   map('g').toApp(APP_NAMES.CHROME),
   map('h').toApp(APP_NAMES.FIGMA),
   map('i').toApp(APP_NAMES.CHATGPT),
-  map('m').toApp(APP_NAMES.TEXTS),
+  map('m').toApp(APP_NAMES.BEEPER),
   map('n').toApp(APP_NAMES.NOTION),
   map('p').toApp(APP_NAMES.SPOTIFY),
   map('r').toApp(APP_NAMES.REFLECT),
