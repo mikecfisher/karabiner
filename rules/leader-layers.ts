@@ -114,6 +114,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('i', toApp(APP_NAMES.CHATGPT)),
     leaderAction('m', toApp(APP_NAMES.BEEPER)),
     leaderAction('n', toApp(APP_NAMES.NOTION)),
+    leaderAction('o', toApp(APP_NAMES.IOS_SIMULATOR)),
     leaderAction('p', toApp(APP_NAMES.PERPLEXITY)),
     leaderAction('r', toApp(APP_NAMES.REFLECT)),
     leaderAction('s', toApp(APP_NAMES.SLACK)),
@@ -121,6 +122,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('v', toApp(APP_NAMES.VSCODE)),
     leaderAction('w', toApp(APP_NAMES.TEAMS)),
     leaderAction('x', toApp(APP_NAMES.LEXICON)),
+    leaderAction('y', toApp(APP_NAMES.FIGMA)),
     leaderAction('z', toApp(APP_NAMES.ZED)),
   ]),
 
