@@ -1,6 +1,7 @@
 import { hyperLayer, map } from 'karabiner.ts';
 
 import { RAYCAST, URLS, APP_NAMES } from '../constants';
+import { toOpenChatGPTAtlas } from '../utils/utils';
 
 // Browser shortcuts layer
 export const browserShortcuts = hyperLayer('b', 'browser-shortcuts').manipulators([
@@ -19,7 +20,7 @@ export const browserShortcuts = hyperLayer('b', 'browser-shortcuts').manipulator
 export const openApps = hyperLayer('o', 'open-apps').manipulators([
   map('1').toApp(APP_NAMES.PASSWORD_MANAGER),
   map('a').toApp(APP_NAMES.AKIFLOW),
-  map('b').toApp(APP_NAMES.ARC),
+  map('b').to(toOpenChatGPTAtlas),
   map('c').toApp(APP_NAMES.CURSOR),
   map('d').toApp(APP_NAMES.DISCORD),
   map('e').toApp(APP_NAMES.SUPERHUMAN),

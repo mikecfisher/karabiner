@@ -18,7 +18,7 @@ import {
 import { RAYCAST, URLS, APP_NAMES, APP_REGEXES } from '../constants';
 import { generateEmojiNotificationText, generateEmojiManipulators } from '../utils/emoji-helpers';
 import { generateMenuNotificationText, menuCategories } from '../utils/notification-menu';
-import { historyNavi, tabNavi, switcher, toClearNotifications } from '../utils/utils';
+import { historyNavi, tabNavi, switcher, toClearNotifications, toOpenChatGPTAtlas } from '../utils/utils';
 
 /**
  * Leader Key Implementation
@@ -105,7 +105,7 @@ export const leaderKey = rule('Leader Key').manipulators([
   withCondition(ifVar('leader', 'apps'))([
     leaderAction('1', toApp(APP_NAMES.PASSWORD_MANAGER)),
     leaderAction('a', toApp(APP_NAMES.AKIFLOW)),
-    leaderAction('b', toApp(APP_NAMES.ARC)),
+    leaderAction('b', toOpenChatGPTAtlas),
     leaderAction('c', toApp(APP_NAMES.CURSOR)),
     leaderAction('d', toApp(APP_NAMES.DISCORD)),
     leaderAction('e', toApp(APP_NAMES.SUPERHUMAN)),
@@ -217,16 +217,23 @@ export const leaderKey = rule('Leader Key').manipulators([
 ]);
 
 /**
- * Arc Browser Navigation
+ * Browser Navigation
  *
- * Adds navigation shortcuts for Arc browser:
+ * Adds navigation shortcuts for browsers:
  * - Ctrl+h/l: Back/Forward
  * - Alt+h/l: Previous/Next tab
  * - Hyper+h/l: Window switching
  */
 export const browserNavigation = rule(
   'Browser Navigation',
-  ifApp([APP_REGEXES.ARC, APP_REGEXES.SAFARI, APP_REGEXES.CHROME, APP_REGEXES.ZEN, APP_REGEXES.BRAVE])
+  ifApp([
+    APP_REGEXES.ARC,
+    APP_REGEXES.SAFARI,
+    APP_REGEXES.CHROME,
+    APP_REGEXES.ZEN,
+    APP_REGEXES.BRAVE,
+    APP_REGEXES.CHATGPT_ATLAS,
+  ])
 ).manipulators([
   ...historyNavi(), // shift+option+h/l for back/forward
   ...tabNavi(), // ctrl+h/l for previous/next tab

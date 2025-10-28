@@ -53,3 +53,12 @@ tell application "System Events"
   end try
 end tell'`,
 };
+
+/** Open ChatGPT Atlas using file path (works better than bundle_identifier for this app) */
+export const toOpenChatGPTAtlas = {
+  software_function: {
+    open_application: {
+      file_path: '/Applications/ChatGPT Atlas.app',
+    },
+  },
+};

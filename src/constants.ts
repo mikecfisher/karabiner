@@ -1,3 +1,5 @@
+export { APPS, APP_NAMES, APP_REGEXES } from './utils/app-names';
+
 export const RAYCAST = {
   WINDOW: {
     CENTER: "open -g 'raycast://extensions/raycast/window-management/center-half'",
@@ -39,49 +41,4 @@ export const URLS = {
   YOUTUBE: "open 'https://youtube.com'",
   LINKEDIN: "open 'https://linkedin.com'",
   CHATGPT: "open 'https://chatgpt.com'",
-} as const;
-
-export const APP_REGEXES = {
-  ARC: '^company\\.thebrowser\\.Browser$',
-  BEEPER: '^com\\.automattic\\.beeper\\.desktop$',
-  BRAVE: '^com\\.brave\\.Browser$',
-  CHROME: '^com\\.google\\.Chrome$',
-  CURSOR: '^com\\.todesktop\\.230313mzl4w4u92$',
-  DIA: '^company\\.thebrowser\\.dia$',
-  FIGMA: '^com\\.figma\\.Desktop$',
-  GHOSTTY: '^com\\.ghostty\\.Ghostty$',
-  IOS_SIMULATOR: '^com\\.apple\\.iphonesimulator$',
-  LEXICON: '^com\\.rekord\\.cloud\\.lexicon$',
-  SAFARI: '^com\\.apple\\.Safari$',
-  VSCODE: '^com\\.microsoft\\.VSCode$',
-  ZED: '^dev\\.zed\\.Zed$',
-  ZEN: '^app\\.zen-browser\\.zen$',
-} as const;
-
-export const APP_NAMES = {
-  AKIFLOW: 'Akiflow',
-  ARC: 'Arc',
-  BEEPER: 'Beeper Desktop',
-  CHATGPT: 'ChatGPT',
-  CHROME: 'Google Chrome',
-  CURSOR: 'Cursor',
-  DIA: 'DIA',
-  DISCORD: 'Discord',
-  FIGMA: 'Figma',
-  FINDER: 'Finder',
-  GHOSTTY: 'GHOSTTY',
-  IOS_SIMULATOR: 'Simulator',
-  LEXICON: 'Lexicon',
-  NOTION: 'Notion',
-  PASSWORD_MANAGER: '1Password',
-  PERPLEXITY: 'Perplexity',
-  REFLECT: 'Reflect',
-  SLACK: 'Slack',
-  SPOTIFY: 'Spotify',
-  SUPERHUMAN: 'Superhuman',
-  TEAMS: 'Microsoft Teams',
-  TEXTS: 'Texts',
-  VSCODE: 'Visual Studio Code',
-  WARP: 'Warp',
-  ZED: 'Zed',
 } as const;

@@ -1,3 +1,5 @@
+import { APP_NAMES } from './app-names';
+
 /**
  * Menu definition with key, action, and description
  */
@@ -25,21 +27,21 @@ export const menuCategories: MenuCategory[] = [
     name: 'Apps',
     varValue: 'apps',
     options: [
-      { key: 'a', description: 'Akiflow' },
+      { key: 'a', description: APP_NAMES.AKIFLOW },
       { key: 'b', description: 'Browser' },
-      { key: 'c', description: 'Cursor' },
-      { key: 'd', description: 'Discord' },
-      { key: 'f', description: 'Finder' },
-      { key: 'g', description: 'Google Chrome' },
-      { key: 'i', description: 'ChatGPT' },
-      { key: 'l', description: 'Lexicon' },
-      { key: 'n', description: 'Notion' },
-      { key: 'p', description: 'Perplexity' },
-      { key: 's', description: 'Slack' },
+      { key: 'c', description: APP_NAMES.CURSOR },
+      { key: 'd', description: APP_NAMES.DISCORD },
+      { key: 'f', description: APP_NAMES.FINDER },
+      { key: 'g', description: APP_NAMES.CHROME },
+      { key: 'i', description: APP_NAMES.CHATGPT },
+      { key: 'l', description: APP_NAMES.LEXICON },
+      { key: 'n', description: APP_NAMES.NOTION },
+      { key: 'p', description: APP_NAMES.PERPLEXITY },
+      { key: 's', description: APP_NAMES.SLACK },
       { key: 't', description: 'Terminal' },
-      { key: 'v', description: 'VS Code' },
-      { key: 'w', description: 'Teams' },
-      { key: 'z', description: 'Zed' },
+      { key: 'v', description: APP_NAMES.VSCODE },
+      { key: 'w', description: APP_NAMES.TEAMS },
+      { key: 'z', description: APP_NAMES.ZED },
     ],
   },
   {
