@@ -1,6 +1,6 @@
 import { rule, map, ifApp } from 'karabiner.ts';
 
-import { APP_REGEXES } from '../constants';
+import { APP_REGEXES } from './app-names';
 
 export const capsLockToHyper = () =>
   rule('Caps Lock → Hyper').manipulators([map('caps_lock').toHyper().toIfAlone('caps_lock')]);

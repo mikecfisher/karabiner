@@ -1,5 +1,3 @@
-export { APPS, APP_NAMES, APP_REGEXES } from './utils/app-names';
-
 export const RAYCAST = {
   WINDOW: {
     CENTER: "open -g 'raycast://extensions/raycast/window-management/center-half'",

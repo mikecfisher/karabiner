@@ -1,6 +1,7 @@
 import { hyperLayer, map } from 'karabiner.ts';
 
-import { RAYCAST, URLS, APP_NAMES } from '../constants';
+import { RAYCAST, URLS } from '../constants';
+import { APP_NAMES } from '../utils/app-names';
 import { toOpenChatGPTAtlas } from '../utils/utils';
 
 // Browser shortcuts layer

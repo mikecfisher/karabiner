@@ -1,6 +1,6 @@
 import { rule, ifApp, map } from 'karabiner.ts';
 
-import { APP_REGEXES } from '../constants';
+import { APP_REGEXES } from '../utils/app-names';
 
 export const lexiconVim = rule('Lexicon Vim Navigation', ifApp(APP_REGEXES.LEXICON)).manipulators([
   map('j', '⌘').to('down_arrow'),

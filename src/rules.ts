@@ -1,6 +1,7 @@
 import { writeToProfile } from 'karabiner.ts';
 
-import { browserNavigation, leaderKey } from './rules/leader-layers';
+import { browserNavigation } from './rules/browser-navigation';
+import { leaderKey } from './rules/leader-layers';
 import { lexiconVim } from './rules/lexicon-vim';
 import { capsLockToControl } from './utils/keyboard-mappings';
 

@@ -7,7 +7,7 @@
 
 import { rule, map, ifApp } from 'karabiner.ts';
 
-import { APP_REGEXES } from '../constants';
+import { APP_REGEXES } from '../utils/app-names';
 
 // Define code editors
 const codeEditors = ifApp([APP_REGEXES.VSCODE, APP_REGEXES.CURSOR, APP_REGEXES.ZED, APP_REGEXES.GHOSTTY]);

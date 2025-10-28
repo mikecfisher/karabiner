@@ -1,4 +1,4 @@
-import { rule, ifVar, withCondition, map, type FromKeyParam, type ToEvent } from 'karabiner.ts';
+import { rule, ifVar, withCondition, map, type FromKeyParam } from 'karabiner.ts';
 
 import { exitLeader } from './leader-layers';
 
