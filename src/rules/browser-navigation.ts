@@ -26,4 +26,3 @@ export const browserNavigation = rule(
   ...tabNavi(), // ctrl+h/l for previous/next tab
   ...switcher(), // Hyper+h/l for window switching
 ]);
-

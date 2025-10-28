@@ -58,9 +58,9 @@ export const aerospaceCommands = rule('AeroSpace Commands').manipulators([
     aeroAction('3', 'workspace 3'),
     aeroAction('4', 'workspace 4'),
     aeroAction('5', 'workspace 5'),
-    aeroAction('b', 'workspace B'),
-    aeroAction('c', 'workspace C'),
-    aeroAction('t', 'workspace T'),
+    aeroAction('b', 'workspace b'),
+    aeroAction('c', 'workspace c'),
+    aeroAction('t', 'workspace t'),
 
     // Move to workspace
     aeroAction(['shift', '1'], 'move-node-to-workspace 1'),
@@ -68,9 +68,9 @@ export const aerospaceCommands = rule('AeroSpace Commands').manipulators([
     aeroAction(['shift', '3'], 'move-node-to-workspace 3'),
     aeroAction(['shift', '4'], 'move-node-to-workspace 4'),
     aeroAction(['shift', '5'], 'move-node-to-workspace 5'),
-    aeroAction(['shift', 'b'], 'move-node-to-workspace B'),
-    aeroAction(['shift', 'c'], 'move-node-to-workspace C'),
-    aeroAction(['shift', 't'], 'move-node-to-workspace T'),
+    aeroAction(['shift', 'b'], 'move-node-to-workspace b'),
+    aeroAction(['shift', 'c'], 'move-node-to-workspace c'),
+    aeroAction(['shift', 't'], 'move-node-to-workspace t'),
 
     // Toggle AeroSpace
     aeroAction('o', 'enable toggle'),

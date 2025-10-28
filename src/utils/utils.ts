@@ -4,7 +4,7 @@ import { map } from 'karabiner.ts';
 export function historyNavi() {
   return [
     map('h', ['control', 'option']).to('[', '⌘'), // Back
-    map('l', ['control', 'option'], 'command').to(']', '⌘'), // Forward
+    map('l', ['control', 'option']).to(']', '⌘'), // Forward
   ];
 }
 

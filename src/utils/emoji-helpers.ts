@@ -1,4 +1,4 @@
-import { map, toPaste, type FromKeyParam, type ToEvent } from 'karabiner.ts';
+import { toPaste, type FromKeyParam, type ToEvent, type map } from 'karabiner.ts';
 
 /**
  * Emoji definitions with key mapping, emoji character, and description

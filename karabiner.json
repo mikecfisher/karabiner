@@ -14,11 +14,7 @@
                 "to": [
                   {
                     "key_code": "left_command",
-                    "modifiers": [
-                      "option",
-                      "control",
-                      "shift"
-                    ]
+                    "modifiers": ["option", "control", "shift"]
                   }
                 ],
                 "to_if_alone": [
@@ -29,9 +25,7 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
+                    "bundle_identifiers": ["^com\\.rekord\\.cloud\\.lexicon$"]
                   }
                 ]
               },
@@ -53,9 +47,7 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_unless",
-                    "bundle_identifiers": [
-                      "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
+                    "bundle_identifiers": ["^com\\.rekord\\.cloud\\.lexicon$"]
                   }
                 ]
               }
@@ -1672,11 +1664,7 @@
                 "to": [
                   {
                     "key_code": "d",
-                    "modifiers": [
-                      "left_command",
-                      "left_option",
-                      "left_control"
-                    ]
+                    "modifiers": ["left_command", "left_option", "left_control"]
                   },
                   {
                     "set_variable": {
@@ -1707,10 +1695,7 @@
                 "to": [
                   {
                     "key_code": "q",
-                    "modifiers": [
-                      "right_control",
-                      "right_command"
-                    ]
+                    "modifiers": ["right_control", "right_command"]
                   },
                   {
                     "set_variable": {
@@ -1741,10 +1726,7 @@
                 "to": [
                   {
                     "key_code": "spacebar",
-                    "modifiers": [
-                      "right_control",
-                      "right_command"
-                    ]
+                    "modifiers": ["right_control", "right_command"]
                   },
                   {
                     "set_variable": {
@@ -2467,9 +2449,7 @@
                 "from": {
                   "key_code": "j",
                   "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
+                    "mandatory": ["command"]
                   }
                 },
                 "to": [
@@ -2480,9 +2460,7 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
+                    "bundle_identifiers": ["^com\\.rekord\\.cloud\\.lexicon$"]
                   }
                 ]
               },
@@ -2491,9 +2469,7 @@
                 "from": {
                   "key_code": "k",
                   "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
+                    "mandatory": ["command"]
                   }
                 },
                 "to": [
@@ -2504,9 +2480,7 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
+                    "bundle_identifiers": ["^com\\.rekord\\.cloud\\.lexicon$"]
                   }
                 ]
               },
@@ -2515,9 +2489,7 @@
                 "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
+                    "mandatory": ["command"]
                   }
                 },
                 "to": [
@@ -2528,9 +2500,7 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
+                    "bundle_identifiers": ["^com\\.rekord\\.cloud\\.lexicon$"]
                   }
                 ]
               },
@@ -2539,9 +2509,7 @@
                 "from": {
                   "key_code": "l",
                   "modifiers": {
-                    "mandatory": [
-                      "command"
-                    ]
+                    "mandatory": ["command"]
                   }
                 },
                 "to": [
@@ -2552,9 +2520,7 @@
                 "conditions": [
                   {
                     "type": "frontmost_application_if",
-                    "bundle_identifiers": [
-                      "^com\\.rekord\\.cloud\\.lexicon$"
-                    ]
+                    "bundle_identifiers": ["^com\\.rekord\\.cloud\\.lexicon$"]
                   }
                 ]
               }
@@ -2568,18 +2534,13 @@
                 "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "option"
-                    ]
+                    "mandatory": ["control", "option"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "open_bracket",
-                    "modifiers": [
-                      "command"
-                    ]
+                    "modifiers": ["command"]
                   }
                 ],
                 "conditions": [
@@ -2600,21 +2561,14 @@
                 "from": {
                   "key_code": "l",
                   "modifiers": {
-                    "mandatory": [
-                      "control",
-                      "option"
-                    ],
-                    "optional": [
-                      "command"
-                    ]
+                    "mandatory": ["control", "option"],
+                    "optional": ["command"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "close_bracket",
-                    "modifiers": [
-                      "command"
-                    ]
+                    "modifiers": ["command"]
                   }
                 ],
                 "conditions": [
@@ -2635,18 +2589,13 @@
                 "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "mandatory": [
-                      "control"
-                    ]
+                    "mandatory": ["control"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "open_bracket",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "modifiers": ["command", "shift"]
                   }
                 ],
                 "conditions": [
@@ -2667,18 +2616,13 @@
                 "from": {
                   "key_code": "l",
                   "modifiers": {
-                    "mandatory": [
-                      "control"
-                    ]
+                    "mandatory": ["control"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "close_bracket",
-                    "modifiers": [
-                      "command",
-                      "shift"
-                    ]
+                    "modifiers": ["command", "shift"]
                   }
                 ],
                 "conditions": [
@@ -2699,20 +2643,13 @@
                 "from": {
                   "key_code": "h",
                   "modifiers": {
-                    "mandatory": [
-                      "command",
-                      "option",
-                      "control"
-                    ]
+                    "mandatory": ["command", "option", "control"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "tab",
-                    "modifiers": [
-                      "control",
-                      "shift"
-                    ]
+                    "modifiers": ["control", "shift"]
                   }
                 ],
                 "conditions": [
@@ -2733,19 +2670,13 @@
                 "from": {
                   "key_code": "l",
                   "modifiers": {
-                    "mandatory": [
-                      "command",
-                      "option",
-                      "control"
-                    ]
+                    "mandatory": ["command", "option", "control"]
                   }
                 },
                 "to": [
                   {
                     "key_code": "tab",
-                    "modifiers": [
-                      "control"
-                    ]
+                    "modifiers": ["control"]
                   }
                 ],
                 "conditions": [
