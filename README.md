@@ -6,6 +6,7 @@ This repo contains my personal Karabiner Elements configuration, heavily influen
 
 - **Leader Key System**: Vim-inspired leader key for launching apps, managing windows, and quick actions
 - **Finder Vim Mode**: Full vim-style navigation in Finder with toggleable mode
+- **Slack Vim Mode**: Full vim-style navigation in Slack with toggleable mode
 - **Browser Navigation**: Vim-style shortcuts for browser navigation (Arc, Safari, Chrome, Zen, Brave)
 - **Caps Lock as Control**: Smart Caps Lock that works as Control in code editors
 - **Lexicon Vim Navigation**: Vim keys for navigating Lexicon
@@ -230,6 +231,84 @@ These work even when vim mode is OFF:
 | `gu` | Go to Utilities          |
 | `gi` | Go to iCloud Drive       |
 | `gl` | Go to Downloads          |
+
+---
+
+### Slack Vim Mode
+
+Vim-style navigation in Slack with a toggleable mode to prevent conflicts with text input.
+
+**Toggle Vim Mode**: Press `j` + `k` simultaneously
+**Exit Vim Mode**: Press `Escape` (works from any app, not just Slack)
+**Notification**: Shows "💬 Slack Vim Mode: ON" when active
+
+> **Note**: G-prefix navigation (gg, gu, gd, etc.) works even when Vim Mode is OFF, and has priority over vim mode commands.
+
+#### When Vim Mode is Active:
+
+**Basic Navigation**:
+| Key | Action |
+|-----|--------|
+| `j` | Move down to next message |
+| `k` | Move up to previous message |
+| `h` | Go back / Exit thread |
+| `l` | Enter thread / Expand |
+| `Ctrl+u` | Page up |
+| `Ctrl+d` | Page down |
+
+**Jump to Messages**:
+| Key | Action |
+|-----|--------|
+| `gg` | Jump to oldest message |
+| `G` (Shift+g) | Jump to newest message |
+| `u` | Jump to first unread message |
+
+**Quick Actions**:
+| Key | Action |
+|-----|--------|
+| `Space` | Quick switcher / Open channel |
+| `/` | Start search |
+| `n` | Find next |
+| `N` (Shift+n) | Find previous |
+
+**Message Actions**:
+| Key | Action |
+|-----|--------|
+| `r` | Reply in thread |
+| `e` | Edit last message |
+| `a` | Add reaction |
+| `m` | Mark as unread |
+| `t` | Open threads view |
+| `o` | Open conversation |
+| `i` | Focus compose field |
+
+**Vim-like Operations**:
+| Key | Action |
+|-----|--------|
+| `y` | Yank/Copy |
+| `v` | Paste |
+| `Z` (Shift+z) | Undo |
+
+**Section Navigation**:
+| Key | Action |
+|-----|--------|
+| `Tab` | Next section |
+| `Shift+Tab` | Previous section |
+
+#### Always Active (G-prefix Navigation):
+
+These work even when vim mode is OFF:
+
+| Key  | Action                   |
+| ---- | ------------------------ |
+| `gg` | Jump to oldest message   |
+| `gh` | Go home (Cmd+Shift+H)    |
+| `gu` | Go to Unreads view       |
+| `gd` | Go to DMs / All DMs      |
+| `gt` | Go to Threads            |
+| `gs` | Go to Saved items        |
+| `gm` | Go to Mentions & reactions |
+| `gf` | Toggle sidebar           |
 
 ---
 

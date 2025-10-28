@@ -81,6 +81,7 @@ export const APPS = {
   },
   SLACK: {
     name: 'Slack',
+    regex: '^com\\.tinyspeck\\.slackmacgap$',
   },
   SPOTIFY: {
     name: 'Spotify',
@@ -145,6 +146,7 @@ export const APP_REGEXES: AppsWithRegex = {
   IOS_SIMULATOR: APPS.IOS_SIMULATOR.regex,
   LEXICON: APPS.LEXICON.regex,
   SAFARI: APPS.SAFARI.regex,
+  SLACK: APPS.SLACK.regex,
   VSCODE: APPS.VSCODE.regex,
   ZED: APPS.ZED.regex,
   ZEN: APPS.ZEN.regex,

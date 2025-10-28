@@ -4,6 +4,7 @@ import { browserNavigation } from './rules/browser-navigation';
 import { finderNavigation, finderVimModeExit } from './rules/finder-navigation';
 import { leaderKey } from './rules/leader-layers';
 import { lexiconVim } from './rules/lexicon-vim';
+import { slackNavigation, slackVimModeExit } from './rules/slack-navigation';
 import { capsLockToControl } from './utils/keyboard-mappings';
 
 writeToProfile(
@@ -25,6 +26,12 @@ writeToProfile(
 
     // Global Finder Vim Mode Exit (works in any app)
     finderVimModeExit,
+
+    // Slack Vim Navigation
+    slackNavigation,
+
+    // Global Slack Vim Mode Exit (works in any app)
+    slackVimModeExit,
   ],
   {
     'basic.simultaneous_threshold_milliseconds': 50,
