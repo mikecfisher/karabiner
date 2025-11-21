@@ -34,7 +34,7 @@ export const openApps = hyperLayer('o', 'open-apps').manipulators([
   map('p').toApp(APP_NAMES.SPOTIFY),
   map('r').toApp(APP_NAMES.REFLECT),
   map('s').toApp(APP_NAMES.SLACK),
-  map('t').toApp(APP_NAMES.GHOSTTY),
+  map('t').toApp(APP_NAMES.WEZTERM),
   map('v').toApp(APP_NAMES.VSCODE),
   map('x').toApp(APP_NAMES.LEXICON),
   map('z').toApp(APP_NAMES.ZED),

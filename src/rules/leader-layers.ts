@@ -112,18 +112,33 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('f', toApp(APP_NAMES.FINDER)),
     leaderAction('g', toApp(APP_NAMES.CHROME)),
     leaderAction('i', toApp(APP_NAMES.CHATGPT)),
-    leaderAction('m', toApp(APP_NAMES.BEEPER)),
+    // 'm' now opens a sub-menu for messaging apps
+    map('m')
+      .toVar('leader', 'apps_messages')
+      .toNotificationMessage('leader', '(M)essages (W)hatsApp (B)eeper'),
     leaderAction('n', toApp(APP_NAMES.NOTION)),
     leaderAction('o', toApp(APP_NAMES.IOS_SIMULATOR)),
     leaderAction('p', toApp(APP_NAMES.PERPLEXITY)),
     leaderAction('r', toApp(APP_NAMES.REFLECT)),
     leaderAction('s', toApp(APP_NAMES.SLACK)),
-    leaderAction('t', toApp(APP_NAMES.GHOSTTY)),
+    leaderAction('t', toApp(APP_NAMES.WEZTERM)),
     leaderAction('v', toApp(APP_NAMES.VSCODE)),
     leaderAction('w', toApp(APP_NAMES.TEAMS)),
     leaderAction('x', toApp(APP_NAMES.LEXICON)),
     leaderAction('y', toApp(APP_NAMES.FIGMA)),
     leaderAction('z', toApp(APP_NAMES.ZED)),
+  ]),
+
+  /**
+   * Apps > Messages Sub-menu
+   *
+   * When the 'leader' variable is 'apps_messages' and an action key is pressed,
+   * launch the corresponding messaging application and exit leader mode.
+   */
+  withCondition(ifVar('leader', 'apps_messages'))([
+    leaderAction('m', toApp(APP_NAMES.MESSAGES)),
+    leaderAction('w', toApp(APP_NAMES.WHATSAPP)),
+    leaderAction('b', toApp(APP_NAMES.BEEPER)),
   ]),
 
   /**

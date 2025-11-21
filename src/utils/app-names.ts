@@ -18,6 +18,14 @@ export const APPS = {
     name: 'Beeper Desktop',
     regex: '^com\\.automattic\\.beeper\\.desktop$',
   },
+  MESSAGES: {
+    name: 'Messages',
+    regex: '^com\\.apple\\.MobileSMS$',
+  },
+  WHATSAPP: {
+    name: 'WhatsApp',
+    regex: '^net\\.whatsapp\\.WhatsApp$',
+  },
   BRAVE: {
     name: 'Brave',
     regex: '^com\\.brave\\.Browser$',
@@ -51,9 +59,9 @@ export const APPS = {
   FINDER: {
     name: 'Finder',
   },
-  GHOSTTY: {
-    name: 'GHOSTTY',
-    regex: '^com\\.ghostty\\.Ghostty$',
+  WEZTERM: {
+    name: 'WezTerm',
+    regex: '^com\\.github\\.wez\\.wezterm$',
   },
   IOS_SIMULATOR: {
     name: 'Simulator',
@@ -142,12 +150,14 @@ export const APP_REGEXES: AppsWithRegex = {
   CURSOR: APPS.CURSOR.regex,
   DIA: APPS.DIA.regex,
   FIGMA: APPS.FIGMA.regex,
-  GHOSTTY: APPS.GHOSTTY.regex,
+  WEZTERM: APPS.WEZTERM.regex,
   IOS_SIMULATOR: APPS.IOS_SIMULATOR.regex,
   LEXICON: APPS.LEXICON.regex,
+  MESSAGES: APPS.MESSAGES.regex,
   SAFARI: APPS.SAFARI.regex,
   SLACK: APPS.SLACK.regex,
   VSCODE: APPS.VSCODE.regex,
+  WHATSAPP: APPS.WHATSAPP.regex,
   ZED: APPS.ZED.regex,
   ZEN: APPS.ZEN.regex,
 };

@@ -28,10 +28,10 @@ writeToProfile(
     finderVimModeExit,
 
     // Slack Vim Navigation
-    slackNavigation,
+    // slackNavigation,
 
     // Global Slack Vim Mode Exit (works in any app)
-    slackVimModeExit,
+    // slackVimModeExit,
   ],
   {
     'basic.simultaneous_threshold_milliseconds': 50,

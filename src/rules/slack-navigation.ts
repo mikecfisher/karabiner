@@ -38,7 +38,7 @@ export const slackVimModeExit = rule('Slack Vim Mode Exit (Global)').manipulator
  * - Ctrl+d: Page down
  *
  * Jump to messages:
- * - gg: Jump to oldest message (Home)
+ * - gg: Jump to oldest message (Home) [vim mode only]
  * - G (Shift+g): Jump to newest message (End)
  * - u: Jump to first unread (Cmd+J)
  *
@@ -55,7 +55,7 @@ export const slackVimModeExit = rule('Slack Vim Mode Exit (Global)').manipulator
  * - m: Mark as unread (Option+Click equivalent)
  * - t: Open thread in sidebar
  *
- * View switching:
+ * View switching (vim mode only):
  * - gh: Go home (Cmd+Shift+H)
  * - gu: Go to unreads view (Cmd+Shift+A)
  * - gd: Go to DMs / All DMs (Cmd+Shift+K)
@@ -80,58 +80,60 @@ export const slackNavigation = rule('Slack Vim Navigation', ifApp('^com\\.tinysp
   ]),
 
   /**
-   * G-prefix navigation mode (MUST BE BEFORE VIM MODE for priority)
+   * G-prefix navigation mode
    * Press 'g' to activate, then another key for the action
-   * These work even when vim mode is OFF
+   * Only works when vim mode is ON to avoid interfering with typing
    */
 
-  // Activate g-mode
-  withCondition(ifVar('slack_g', 0))([map('g').toVar('slack_g', 1)]),
+  // Activate g-mode (only when vim mode is ON)
+  withCondition(ifVar('slack_vim_mode', 1))([withCondition(ifVar('slack_g', 0))([map('g').toVar('slack_g', 1)])]),
 
   // G-mode actions
-  withCondition(ifVar('slack_g', 1))([
-    // gg - Jump to oldest message (like vim)
-    map('g')
-      .to('home') // Home = oldest message
-      .toVar('slack_g', 0),
+  withCondition(ifVar('slack_vim_mode', 1))([
+    withCondition(ifVar('slack_g', 1))([
+      // gg - Jump to oldest message (like vim)
+      map('g')
+        .to('home') // Home = oldest message
+        .toVar('slack_g', 0),
 
-    // gh - Go home
-    map('h')
-      .to('h', ['command', 'shift']) // Cmd+Shift+H = Go to Home
-      .toVar('slack_g', 0),
+      // gh - Go home
+      map('h')
+        .to('h', ['command', 'shift']) // Cmd+Shift+H = Go to Home
+        .toVar('slack_g', 0),
 
-    // gu - Go to unreads view
-    map('u')
-      .to('a', ['command', 'shift']) // Cmd+Shift+A = Unreads
-      .toVar('slack_g', 0),
+      // gu - Go to unreads view
+      map('u')
+        .to('a', ['command', 'shift']) // Cmd+Shift+A = Unreads
+        .toVar('slack_g', 0),
 
-    // gd - Go to DMs / All DMs view (Cmd+Shift+K)
-    map('d')
-      .to('k', ['command', 'shift']) // Cmd+Shift+K = All DMs view
-      .toVar('slack_g', 0),
+      // gd - Go to DMs / All DMs view (Cmd+Shift+K)
+      map('d')
+        .to('k', ['command', 'shift']) // Cmd+Shift+K = All DMs view
+        .toVar('slack_g', 0),
 
-    // gt - Go to threads
-    map('t')
-      .to('t', ['command', 'shift']) // Cmd+Shift+T = Threads
-      .toVar('slack_g', 0),
+      // gt - Go to threads
+      map('t')
+        .to('t', ['command', 'shift']) // Cmd+Shift+T = Threads
+        .toVar('slack_g', 0),
 
-    // gs - Go to saved items
-    map('s')
-      .to('s', ['command', 'shift']) // Cmd+Shift+S = Saved items
-      .toVar('slack_g', 0),
+      // gs - Go to saved items
+      map('s')
+        .to('s', ['command', 'shift']) // Cmd+Shift+S = Saved items
+        .toVar('slack_g', 0),
 
-    // gm - Go to mentions & reactions
-    map('m')
-      .to('m', ['command', 'shift']) // Cmd+Shift+M = Mentions
-      .toVar('slack_g', 0),
+      // gm - Go to mentions & reactions
+      map('m')
+        .to('m', ['command', 'shift']) // Cmd+Shift+M = Mentions
+        .toVar('slack_g', 0),
 
-    // gf - Toggle file browser (sidebar)
-    map('f')
-      .to('d', ['command', 'shift']) // Cmd+Shift+D = Toggle sidebar
-      .toVar('slack_g', 0),
+      // gf - Toggle file browser (sidebar)
+      map('f')
+        .to('d', ['command', 'shift']) // Cmd+Shift+D = Toggle sidebar
+        .toVar('slack_g', 0),
 
-    // Escape g-mode
-    map('escape').toVar('slack_g', 0),
+      // Escape g-mode
+      map('escape').toVar('slack_g', 0),
+    ]),
   ]),
 
   /**
@@ -185,4 +187,3 @@ export const slackNavigation = rule('Slack Vim Navigation', ifApp('^com\\.tinysp
     ]),
   ]),
 ]);
-

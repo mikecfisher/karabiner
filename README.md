@@ -50,18 +50,30 @@ Launch applications quickly:
 | `f` | Finder             |
 | `g` | Google Chrome      |
 | `i` | ChatGPT            |
-| `m` | Beeper             |
+| `m` | **Messaging apps sub-menu** (see below) |
 | `n` | Notion             |
 | `o` | iOS Simulator      |
 | `p` | Perplexity         |
 | `r` | Reflect            |
 | `s` | Slack              |
-| `t` | Ghostty (Terminal) |
+| `t` | WezTerm (Terminal) |
 | `v` | VS Code            |
 | `w` | Microsoft Teams    |
 | `x` | Lexicon            |
 | `y` | Figma              |
 | `z` | Zed                |
+
+**Messaging Apps Sub-menu** (`./` → `A` → `M`):
+
+After pressing `m` in the Apps menu, you'll see another menu:
+
+| Key | Application |
+| --- | ----------- |
+| `m` | Messages    |
+| `w` | WhatsApp    |
+| `b` | Beeper      |
+
+Example: `./` → `A` → `M` → `M` opens Messages app
 
 ---
 
@@ -242,7 +254,7 @@ Vim-style navigation in Slack with a toggleable mode to prevent conflicts with t
 **Exit Vim Mode**: Press `Escape` (works from any app, not just Slack)
 **Notification**: Shows "💬 Slack Vim Mode: ON" when active
 
-> **Note**: G-prefix navigation (gg, gu, gd, etc.) works even when Vim Mode is OFF, and has priority over vim mode commands.
+> **Note**: All vim commands (including g-prefix navigation) only work when Vim Mode is ON to avoid interfering with typing messages.
 
 #### When Vim Mode is Active:
 
@@ -295,9 +307,9 @@ Vim-style navigation in Slack with a toggleable mode to prevent conflicts with t
 | `Tab` | Next section |
 | `Shift+Tab` | Previous section |
 
-#### Always Active (G-prefix Navigation):
+#### G-prefix Navigation (Vim Mode Only):
 
-These work even when vim mode is OFF:
+These commands only work when Slack vim mode is ON:
 
 | Key  | Action                   |
 | ---- | ------------------------ |
