@@ -22,7 +22,7 @@ export const openApps = hyperLayer('o', 'open-apps').manipulators([
   map('1').toApp(APP_NAMES.PASSWORD_MANAGER),
   map('a').toApp(APP_NAMES.AKIFLOW),
   map('b').to(toOpenChatGPTAtlas),
-  map('c').toApp(APP_NAMES.CURSOR),
+  map('c').toApp(APP_NAMES.ZED),
   map('d').toApp(APP_NAMES.DISCORD),
   map('e').toApp(APP_NAMES.SUPERHUMAN),
   map('f').toApp(APP_NAMES.FINDER),

@@ -106,7 +106,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('1', toApp(APP_NAMES.PASSWORD_MANAGER)),
     leaderAction('a', toApp(APP_NAMES.AKIFLOW)),
     leaderAction('b', toOpenChatGPTAtlas),
-    leaderAction('c', toApp(APP_NAMES.CURSOR)),
+    leaderAction('c', toApp(APP_NAMES.ZED)),
     leaderAction('d', toApp(APP_NAMES.DISCORD)),
     leaderAction('e', toApp(APP_NAMES.SUPERHUMAN)),
     leaderAction('f', toApp(APP_NAMES.FINDER)),

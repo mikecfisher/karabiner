@@ -29,7 +29,7 @@ export const menuCategories: MenuCategory[] = [
     options: [
       { key: 'a', description: APP_NAMES.AKIFLOW },
       { key: 'b', description: 'Browser' },
-      { key: 'c', description: APP_NAMES.CURSOR },
+      { key: 'c', description: APP_NAMES.ZED },
       { key: 'd', description: APP_NAMES.DISCORD },
       { key: 'f', description: APP_NAMES.FINDER },
       { key: 'g', description: APP_NAMES.CHROME },
