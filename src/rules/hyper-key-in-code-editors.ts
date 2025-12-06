@@ -10,7 +10,7 @@ import { rule, map, ifApp } from 'karabiner.ts';
 import { APP_REGEXES } from '../utils/app-names';
 
 // Define code editors
-const codeEditors = ifApp([APP_REGEXES.VSCODE, APP_REGEXES.CURSOR, APP_REGEXES.ZED, APP_REGEXES.WEZTERM]);
+const codeEditors = ifApp([APP_REGEXES.VSCODE, APP_REGEXES.CURSOR, APP_REGEXES.ZED, APP_REGEXES.GHOSTTY]);
 
 // This rule intercepts Hyper+key combinations in code editors and translates them to Ctrl+key
 export const hyperKeyInCodeEditors = rule('Code Editor Vim Navigation', codeEditors).manipulators([

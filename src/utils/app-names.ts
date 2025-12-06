@@ -59,6 +59,10 @@ export const APPS = {
   FINDER: {
     name: 'Finder',
   },
+  GHOSTTY: {
+    name: 'Ghostty',
+    regex: '^com\\.ghostty\\.Ghostty$',
+  },
   WEZTERM: {
     name: 'WezTerm',
     regex: '^com\\.github\\.wez\\.wezterm$',
@@ -150,6 +154,7 @@ export const APP_REGEXES: AppsWithRegex = {
   CURSOR: APPS.CURSOR.regex,
   DIA: APPS.DIA.regex,
   FIGMA: APPS.FIGMA.regex,
+  GHOSTTY: APPS.GHOSTTY.regex,
   WEZTERM: APPS.WEZTERM.regex,
   IOS_SIMULATOR: APPS.IOS_SIMULATOR.regex,
   LEXICON: APPS.LEXICON.regex,

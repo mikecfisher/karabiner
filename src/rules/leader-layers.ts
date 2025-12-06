@@ -121,7 +121,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('p', toApp(APP_NAMES.PERPLEXITY)),
     leaderAction('r', toApp(APP_NAMES.REFLECT)),
     leaderAction('s', toApp(APP_NAMES.SLACK)),
-    leaderAction('t', toApp(APP_NAMES.WEZTERM)),
+    leaderAction('t', toApp(APP_NAMES.GHOSTTY)),
     leaderAction('v', toApp(APP_NAMES.VSCODE)),
     leaderAction('w', toApp(APP_NAMES.TEAMS)),
     leaderAction('x', toApp(APP_NAMES.LEXICON)),
