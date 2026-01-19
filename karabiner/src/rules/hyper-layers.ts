@@ -37,7 +37,7 @@ export const openApps = hyperLayer('o', 'open-apps').manipulators([
   map('t').toApp(APP_NAMES.GHOSTTY),
   map('v').toApp(APP_NAMES.VSCODE),
   map('x').toApp(APP_NAMES.LEXICON),
-  map('z').toApp(APP_NAMES.ZED),
+  map('z').toApp(APP_NAMES.CURSOR),
 ]);
 
 // Window management layer

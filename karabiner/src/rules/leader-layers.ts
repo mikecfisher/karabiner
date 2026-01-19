@@ -126,7 +126,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('w', toApp(APP_NAMES.TEAMS)),
     leaderAction('x', toApp(APP_NAMES.LEXICON)),
     leaderAction('y', toApp(APP_NAMES.FIGMA)),
-    leaderAction('z', toApp(APP_NAMES.ZED)),
+    leaderAction('z', toApp(APP_NAMES.CURSOR)),
   ]),
 
   /**

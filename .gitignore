@@ -1,7 +1,6 @@
-node_modules
+karabiner/node_modules
+karabiner/automatic_backups/
+karabiner/dist/
 
 # Explicitly include .cursorrules despite global gitignore
 !.cursorrules
-
-# Other ignored files
-dist/

@@ -5,25 +5,20 @@
   "author": "Mike Fisher",
   "license": "MIT",
   "scripts": {
-    "generate": "tsx src/rules.ts",
+    "generate": "bun src/rules.ts",
     "restart:kb": "launchctl kickstart -k gui/`id -u`/org.pqrs.service.agent.karabiner_console_user_server",
-    "apply": "pnpm generate && pnpm restart:kb",
+    "apply": "bun run generate && bun run restart:kb",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "typecheck": "tsc --noEmit",
-    "validate": "pnpm lint && pnpm typecheck"
+    "validate": "bun run lint && bun run typecheck"
   },
-  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387",
   "dependencies": {
-    "karabiner.ts": "^1.35.1",
+    "karabiner.ts": "^1.36.0",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.2",
-    "@types/node": "^18.7.19",
-    "nodemon": "^2.0.20",
-    "tsm": "^2.2.2",
-    "tsx": "^4.19.2"
+    "@biomejs/biome": "^2.3.11"
   }
 }
