@@ -1,6 +1,6 @@
 ;; Window Management Sequences
 ;; Leader -> w -> key
-;; Uses Rectangle URL scheme with -g flag (no focus stealing)
+;; Uses Raycast window management with -g flag (no focus stealing)
 
 ;; Sequences
 (defseq win-center (w c))
@@ -16,14 +16,14 @@
 
 ;; Virtual keys
 (defvirtualkeys
-  win-center (cmd open -g "rectangle://execute-action?name=center")
-  win-maximize (cmd open -g "rectangle://execute-action?name=maximize")
-  win-left-half (cmd open -g "rectangle://execute-action?name=left-half")
-  win-bottom-half (cmd open -g "rectangle://execute-action?name=bottom-half")
-  win-top-half (cmd open -g "rectangle://execute-action?name=top-half")
-  win-right-half (cmd open -g "rectangle://execute-action?name=right-half")
-  win-prev-display (cmd open -g "rectangle://execute-action?name=previous-display")
-  win-next-display (cmd open -g "rectangle://execute-action?name=next-display")
-  win-prev-desktop (cmd open -g "rectangle://execute-action?name=previous-desktop")
-  win-next-desktop (cmd open -g "rectangle://execute-action?name=next-desktop")
+  win-center (cmd open -g "raycast://extensions/raycast/window-management/center")
+  win-maximize (cmd open -g "raycast://extensions/raycast/window-management/maximize")
+  win-left-half (cmd open -g "raycast://extensions/raycast/window-management/left-half")
+  win-bottom-half (cmd open -g "raycast://extensions/raycast/window-management/bottom-half")
+  win-top-half (cmd open -g "raycast://extensions/raycast/window-management/top-half")
+  win-right-half (cmd open -g "raycast://extensions/raycast/window-management/right-half")
+  win-prev-display (cmd open -g "raycast://extensions/raycast/window-management/previous-display")
+  win-next-display (cmd open -g "raycast://extensions/raycast/window-management/next-display")
+  win-prev-desktop (cmd open -g "raycast://extensions/raycast/window-management/previous-desktop")
+  win-next-desktop (cmd open -g "raycast://extensions/raycast/window-management/next-desktop")
 )
