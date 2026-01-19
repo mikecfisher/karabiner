@@ -3,7 +3,14 @@
     "allow": [
       "WebFetch(domain:api.github.com)",
       "Bash(bun update:*)",
-      "Bash(bun run validate:*)"
+      "Bash(bun run validate:*)",
+      "mcp__Ref__ref_search_documentation",
+      "mcp__Ref__ref_read_url",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:jtroo.github.io)",
+      "WebFetch(domain:shom.dev)",
+      "WebFetch(domain:release-assets.githubusercontent.com)"
     ]
   }
 }

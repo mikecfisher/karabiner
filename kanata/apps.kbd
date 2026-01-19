@@ -1,0 +1,38 @@
+;; App Launching Sequences
+;; Leader -> a -> key
+
+;; Sequences
+(defseq open-1password (a 1))
+(defseq open-atlas (a b))
+(defseq open-zed (a c))
+(defseq open-discord (a d))
+(defseq open-superhuman (a e))
+(defseq open-finder (a f))
+(defseq open-chrome (a g))
+(defseq open-chatgpt (a i))
+(defseq open-notion (a n))
+(defseq open-perplexity (a p))
+(defseq open-reflect (a r))
+(defseq open-slack (a s))
+(defseq open-ghostty (a t))
+(defseq open-vscode (a v))
+(defseq open-cursor (a z))
+
+;; Virtual keys
+(defvirtualkeys
+  open-1password (cmd open -b com.1password.1password)
+  open-atlas (cmd open "/Applications/ChatGPT Atlas.app")
+  open-zed (cmd open -b dev.zed.Zed)
+  open-discord (cmd open -b com.hnc.Discord)
+  open-superhuman (cmd open -b com.superhuman.email)
+  open-finder (cmd open -b com.apple.finder)
+  open-chrome (cmd open -b com.google.Chrome)
+  open-chatgpt (cmd open -b com.openai.chat)
+  open-notion (cmd open -b notion.id)
+  open-perplexity (cmd open -b ai.perplexity.mac)
+  open-reflect (cmd open -b app.reflect.ReflectDesktop)
+  open-slack (cmd open -b com.tinyspeck.slackmacgap)
+  open-ghostty (cmd open -b com.mitchellh.ghostty)
+  open-vscode (cmd open -b com.microsoft.VSCode)
+  open-cursor (cmd open -b com.todesktop.230313mzl4w4u92)
+)
