@@ -1,10 +1,14 @@
-;; Kanata Control Commands
+;; Kanata Control Commands Layer
 ;; Leader -> k -> key
 
-;; Sequences
-(defseq reload-config (k r))
-
-;; Virtual keys
-(defvirtualkeys
+;; Aliases for kanata control commands
+(defalias
   reload-config (multi lrld (cmd terminal-notifier -title "Kanata" -message "Config reloaded"))
+)
+
+;; Kanata commands layer - reload and control shortcuts
+(deflayermap (kanata-cmds)
+  r (multi @reload-config (layer-switch base))
+  esc (layer-switch base)
+  _ (layer-switch base)
 )

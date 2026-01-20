@@ -1,6 +1,9 @@
 ;; Kanata Configuration - Migrated from Karabiner-Elements
 ;; Modular config: Caps Lock + Leader Key for App Launching & Window Management
 ;;
+;; Architecture: Chord (. + /) -> Leader Layer -> Category Layer -> Action
+;; Each layer change emits an event for Hammerspoon overlay
+;;
 ;; REQUIRES: cmd_allowed binary (not Homebrew version)
 ;; Download from: https://github.com/jtroo/kanata/releases
 
@@ -8,8 +11,6 @@
   process-unmapped-keys yes
   danger-enable-cmd yes
   concurrent-tap-hold yes
-  sequence-timeout 1500
-  sequence-input-mode hidden-suppressed
 )
 
 ;; Minimal defsrc - only keys we're remapping
@@ -23,19 +24,38 @@
 ;; Caps Lock: tap=Escape, hold=Control
 (defalias
   cap (tap-hold $tap-timeout $hold-timeout esc lctl)
+  ;; Clear notifications - direct action from leader layer
+  clear-notifications (cmd open -g "raycast://script-commands/dismiss-notifications")
 )
 
-;; Leader key chord: . + / pressed simultaneously
+;; Leader key chord: . + / pressed simultaneously -> switches to leader layer
 (defchordsv2
-  (. /) sldr 50 first-release ()
+  (. /) (layer-switch leader) 200 first-release ()
 )
 
-;; Include modular configuration files
+;; Include modular configuration files (each defines its own layer and aliases)
 (include kanata-commands.kbd)
 (include apps.kbd)
 (include windows.kbd)
+(include raycast.kbd)
+(include browser.kbd)
+(include system.kbd)
 
 ;; Base layer
 (deflayer base
   @cap . /
+)
+
+;; Leader layer - category selection
+;; Press the chord (./) then press a category key
+(deflayermap (leader)
+  a (layer-switch apps)
+  w (layer-switch windows)
+  b (layer-switch browser)
+  r (layer-switch raycast)
+  s (layer-switch system)
+  k (layer-switch kanata-cmds)
+  n (multi @clear-notifications (layer-switch base))
+  esc (layer-switch base)
+  _ (layer-switch base)
 )

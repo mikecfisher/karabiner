@@ -6,10 +6,12 @@
     <string>com.kanata</string>
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/kanata</string>
+        <string>/Users/mike/dev/personal/karabiner/kanata/kanata_cmd</string>
         <string>-c</string>
         <string>/Users/mike/dev/personal/karabiner/kanata/kanata.kbd</string>
         <string>-n</string>
+        <string>-p</string>
+        <string>5829</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
