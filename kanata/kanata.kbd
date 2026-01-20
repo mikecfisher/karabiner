@@ -14,7 +14,8 @@
 )
 
 ;; Minimal defsrc - only keys we're remapping
-(defsrc caps . /)
+;; h/j/k/l added for lexicon layer vim navigation
+(defsrc caps . / h j k l)
 
 (defvar
   tap-timeout 200
@@ -40,10 +41,11 @@
 (include raycast.kbd)
 (include browser.kbd)
 (include system.kbd)
+(include lexicon.kbd)
 
 ;; Base layer
 (deflayer base
-  @cap . /
+  @cap . / h j k l
 )
 
 ;; Leader layer - category selection

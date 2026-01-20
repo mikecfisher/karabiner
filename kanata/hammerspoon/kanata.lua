@@ -82,6 +82,12 @@ local layerMappings = {
   ["kanata-cmds"] = {
     { key = "r", action = "Reload Config" },
   },
+  lexicon = {
+    { key = "⌘h", action = "← Left" },
+    { key = "⌘j", action = "↓ Down" },
+    { key = "⌘k", action = "↑ Up" },
+    { key = "⌘l", action = "→ Right" },
+  },
 }
 
 -- Configuration
@@ -310,9 +316,15 @@ local function hideOverlay()
   end)
 end
 
+-- Layers that should never show an overlay (app-specific layers)
+local silentLayers = {
+  base = true,
+  lexicon = true,
+}
+
 -- Handle layer change event
 local function onLayerChange(layerName)
-  if layerName == "base" then
+  if silentLayers[layerName] then
     hideOverlay()
     return
   end
@@ -419,11 +431,40 @@ local function toggleOverlay(layerName)
   end
 end
 
+-- Send layer change command to kanata
+local function sendLayerChange(layerName)
+  if client and client:connected() then
+    local cmd = '{"ChangeLayer":{"new":"' .. layerName .. '"}}\n'
+    client:write(cmd)
+  end
+end
+
+-- App-specific layer switching
+local appLayers = {
+  ["Lexicon"] = "lexicon",
+  ["Lexicon-Beta"] = "lexicon",
+  -- Add more apps here as needed
+}
+
+local appWatcher = hs.application.watcher.new(function(name, event, app)
+  if event == hs.application.watcher.activated then
+    local targetLayer = appLayers[name]
+    if targetLayer then
+      sendLayerChange(targetLayer)
+    else
+      sendLayerChange("base")
+    end
+  end
+end)
+
+appWatcher:start()
+
 -- Expose functions
 M.connect = connect
 M.disconnect = disconnect
 M.toggleOverlay = toggleOverlay
 M.hideOverlay = hideOverlay
+M.sendLayerChange = sendLayerChange
 
 -- Auto-connect on load
 connect()
