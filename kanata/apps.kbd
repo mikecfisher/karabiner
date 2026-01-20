@@ -5,7 +5,7 @@
 ;; Aliases for app launching commands
 (defalias
   open-1password (cmd open -b com.1password.1password)
-  open-akiflow (cmd open -b fm.akiflow.app)
+  open-akiflow (cmd open -b com.akiflow.akiflow)
   open-atlas (cmd open "/Applications/ChatGPT Atlas.app")
   open-zed (cmd open -b dev.zed.Zed)
   open-discord (cmd open -b com.hnc.Discord)
