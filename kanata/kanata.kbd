@@ -15,7 +15,10 @@
 
 ;; Minimal defsrc - only keys we're remapping
 ;; h/j/k/l added for lexicon layer vim navigation
-(defsrc caps . / h j k l)
+(defsrc
+  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+  fn caps . / h j k l
+)
 
 (defvar
   tap-timeout 200
@@ -27,6 +30,9 @@
   cap (tap-hold $tap-timeout $hold-timeout esc lctl)
   ;; Clear notifications - direct action from leader layer
   clear-notifications (cmd open -g "raycast://script-commands/dismiss-notifications")
+  fnl (layer-while-held fkeys)
+  mission-control (multi lctl up)
+  spotlight (multi lmet spc)
 )
 
 ;; Leader key chord: . + / pressed simultaneously -> switches to leader layer
@@ -45,7 +51,13 @@
 
 ;; Base layer
 (deflayer base
-  @cap . / h j k l
+  f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
+  @fnl @cap . / h j k l
+)
+
+(deflayer fkeys
+  brdn brup @mission-control @spotlight f5 @system-dnd prev pp next mute vold volu
+  fn @cap . / h j k l
 )
 
 ;; Leader layer - category selection
