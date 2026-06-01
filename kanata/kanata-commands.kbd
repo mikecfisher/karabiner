@@ -3,7 +3,11 @@
 
 ;; Aliases for kanata control commands
 (defalias
-  reload-config (multi lrld (cmd terminal-notifier -title "Kanata" -message "Config reloaded"))
+  reload-config (multi
+    lrld
+    (cmd open -g hammerspoon://hideKanataOverlay)
+    (cmd open -g hammerspoon://reload)
+    (cmd terminal-notifier -title "Kanata" -message "Config reloaded"))
 )
 
 ;; Kanata commands layer - reload and control shortcuts

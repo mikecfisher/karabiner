@@ -2,14 +2,14 @@
 ;; When Lexicon app is focused, Cmd+hjkl becomes arrow keys
 ;; Layer is activated by Hammerspoon via TCP when Lexicon gains focus
 
-;; fork checks if Cmd is held: if yes -> arrow (with unmod to release Cmd first), if no -> normal key
-;; unmod releases all modifiers, outputs the key, then re-presses modifiers
-;; (lmet rmet) checks if either left or right Cmd is held
+;; fork syntax: (fork $default-action $alternate-action $trigger-keys)
+;; When Cmd (lmet/rmet) is held, use alternate action (arrow key)
+;; unmod releases modifiers before outputting the key
 (defalias
-  lex-h (fork (unmod left) h (lmet rmet))
-  lex-j (fork (unmod down) j (lmet rmet))
-  lex-k (fork (unmod up) k (lmet rmet))
-  lex-l (fork (unmod right) l (lmet rmet))
+  lex-h (fork h (unmod left) (lmet rmet))
+  lex-j (fork j (unmod down) (lmet rmet))
+  lex-k (fork k (unmod up) (lmet rmet))
+  lex-l (fork l (unmod right) (lmet rmet))
 )
 
 (deflayermap (lexicon)

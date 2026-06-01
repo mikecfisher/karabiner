@@ -15,9 +15,10 @@
 
 ;; Minimal defsrc - only keys we're remapping
 ;; h/j/k/l added for lexicon layer vim navigation
+;; lmet/rmet added so fork can detect Cmd state for lexicon layer
 (defsrc
   f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
-  fn caps . / h j k l
+  fn caps . / h j k l lmet rmet
 )
 
 (defvar
@@ -52,24 +53,25 @@
 ;; Base layer
 (deflayer base
   f1 f2 f3 f4 f5 f6 f7 f8 f9 f10 f11 f12
-  @fnl @cap . / h j k l
+  @fnl @cap . / h j k l lmet rmet
 )
 
 (deflayer fkeys
   brdn brup @mission-control @spotlight f5 @system-dnd prev pp next mute vold volu
-  fn @cap . / h j k l
+  fn @cap . / h j k l lmet rmet
 )
 
 ;; Leader layer - category selection
 ;; Press the chord (./) then press a category key
 (deflayermap (leader)
   a (layer-switch apps)
-  w (layer-switch windows)
   b (layer-switch browser)
-  r (layer-switch raycast)
-  s (layer-switch system)
+  i (layer-switch intelligence)
   k (layer-switch kanata-cmds)
   n (multi @clear-notifications (layer-switch base))
+  r (layer-switch raycast)
+  s (layer-switch system)
+  w (layer-switch windows)
   esc (layer-switch base)
   _ (layer-switch base)
 )

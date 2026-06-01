@@ -7,12 +7,13 @@ local M = {}
 local layerMappings = {
   leader = {
     { key = "a", action = "Apps" },
-    { key = "w", action = "Windows" },
     { key = "b", action = "Browser" },
-    { key = "r", action = "Raycast" },
-    { key = "s", action = "System" },
+    { key = "i", action = "Intelligence" },
     { key = "k", action = "Kanata" },
     { key = "n", action = "Clear Notifications" },
+    { key = "r", action = "Raycast" },
+    { key = "s", action = "System" },
+    { key = "w", action = "Windows" },
     { key = "esc", action = "Exit" },
   },
   apps = {
@@ -31,7 +32,7 @@ local layerMappings = {
     { key = "p", action = "Perplexity" },
     { key = "r", action = "Reflect" },
     { key = "s", action = "Slack" },
-    { key = "t", action = "Ghostty" },
+    { key = "t", action = "cmux" },
     { key = "v", action = "VS Code" },
     { key = "w", action = "Teams" },
     { key = "x", action = "Lexicon" },
@@ -43,12 +44,16 @@ local layerMappings = {
     { key = "w", action = "WhatsApp" },
     { key = "b", action = "Beeper" },
   },
+  intelligence = {
+    { key = "c", action = "Claude" },
+    { key = "g", action = "ChatGPT" },
+  },
   windows = {
     { key = "h", action = "Left" },
     { key = "j", action = "Bottom" },
     { key = "k", action = "Top" },
     { key = "l", action = "Right" },
-    { key = "c", action = "Center" },
+    { key = "c", action = "Center ⅓" },
     { key = "f", action = "Maximize" },
     { key = "[", action = "Prev Display" },
     { key = "]", action = "Next Display" },
@@ -465,6 +470,36 @@ M.disconnect = disconnect
 M.toggleOverlay = toggleOverlay
 M.hideOverlay = hideOverlay
 M.sendLayerChange = sendLayerChange
+
+-- URL handler for hiding overlay (used by Kanata reload command)
+hs.urlevent.bind("hideKanataOverlay", function()
+  hideOverlay()
+end)
+
+-- USB watcher: restart kanata when a new keyboard is plugged in
+-- Uses launchctl bootout/bootstrap for a clean restart with enough delay
+-- for the old process to fully release device handles
+local usbRestartInProgress = false
+local usbWatcher = hs.usb.watcher.new(function(event)
+  if event.eventType == "added" and not usbRestartInProgress then
+    usbRestartInProgress = true
+    -- Delay to let the device fully initialize
+    hs.timer.doAfter(1, function()
+      hs.alert.show("Keyboard connected — restarting Kanata")
+      disconnect()
+      -- Full service restart: stop, wait for device release, start
+      hs.execute("launchctl bootout system/com.kanata", true)
+      hs.timer.doAfter(3, function()
+        hs.execute("launchctl bootstrap system /Library/LaunchDaemons/com.kanata.plist", true)
+        hs.timer.doAfter(2, function()
+          connect()
+          usbRestartInProgress = false
+        end)
+      end)
+    end)
+  end
+end)
+usbWatcher:start()
 
 -- Auto-connect on load
 connect()

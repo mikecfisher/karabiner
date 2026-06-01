@@ -4,7 +4,7 @@
 
 ;; Aliases for window management commands
 (defalias
-  win-center (cmd open -g "raycast://extensions/raycast/window-management/center")
+  win-center (cmd open -g "raycast://extensions/raycast/window-management/center-third")
   win-maximize (cmd open -g "raycast://extensions/raycast/window-management/maximize")
   win-left-half (cmd open -g "raycast://extensions/raycast/window-management/left-half")
   win-bottom-half (cmd open -g "raycast://extensions/raycast/window-management/bottom-half")
