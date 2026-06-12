@@ -11,7 +11,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 KANATA_BINARY="$SCRIPT_DIR/kanata_cmd"
-KANATA_CONFIG="$SCRIPT_DIR/kanata.kbd"
+KANATA_SOURCE_CONFIG="$SCRIPT_DIR/kanata.kbd"
+KANATA_CONFIG_DIR="/usr/local/etc/kanata"
+KANATA_CONFIG="$KANATA_CONFIG_DIR/kanata.kbd"
 KANATA_PORT=5829
 PLIST_NAME="com.kanata"
 LAUNCH_DAEMON_PATH="/Library/LaunchDaemons/${PLIST_NAME}.plist"
@@ -92,8 +94,8 @@ check_kanata_binary() {
 }
 
 check_kanata_config() {
-    if [[ ! -f "$KANATA_CONFIG" ]]; then
-        error "Kanata config not found at: $KANATA_CONFIG"
+    if [[ ! -f "$KANATA_SOURCE_CONFIG" ]]; then
+        error "Kanata source config not found at: $KANATA_SOURCE_CONFIG"
         exit 1
     fi
 }
@@ -169,11 +171,77 @@ install_kanata_binary() {
         info "Installing binary to $INSTALL_BINARY_PATH"
     fi
 
+    sudo mkdir -p "$(dirname "$INSTALL_BINARY_PATH")"
     sudo cp "$KANATA_BINARY" "$INSTALL_BINARY_PATH"
     sudo chmod +x "$INSTALL_BINARY_PATH"
     success "Binary installed to $INSTALL_BINARY_PATH"
     CHANGES_MADE=true
     NEEDS_RELOAD=true
+}
+
+# ============================================================================
+# Kanata Runtime Config Installation
+# ============================================================================
+
+runtime_config_up_to_date() {
+    local src dst src_base dst_base found
+    local source_files=("$SCRIPT_DIR"/*.kbd)
+
+    if [[ ! -d "$KANATA_CONFIG_DIR" ]]; then
+        return 1
+    fi
+
+    for src in "${source_files[@]}"; do
+        dst="$KANATA_CONFIG_DIR/$(basename "$src")"
+        if [[ ! -f "$dst" ]] || ! cmp -s "$src" "$dst"; then
+            return 1
+        fi
+    done
+
+    for dst in "$KANATA_CONFIG_DIR"/*.kbd; do
+        [[ -e "$dst" ]] || continue
+        dst_base=$(basename "$dst")
+        found=false
+        for src in "${source_files[@]}"; do
+            src_base=$(basename "$src")
+            if [[ "$src_base" == "$dst_base" ]]; then
+                found=true
+                break
+            fi
+        done
+        if [[ "$found" == "false" ]]; then
+            return 1
+        fi
+    done
+
+    return 0
+}
+
+install_kanata_config() {
+    header "Kanata Runtime Config"
+
+    info "Validating source config"
+    "$KANATA_BINARY" --check --cfg "$KANATA_SOURCE_CONFIG" >/dev/null
+    success "Source config is valid"
+
+    if runtime_config_up_to_date; then
+        skip "Runtime config at $KANATA_CONFIG_DIR is up to date"
+    else
+        info "Syncing .kbd files to $KANATA_CONFIG_DIR"
+        sudo mkdir -p "$KANATA_CONFIG_DIR"
+        sudo rm -f "$KANATA_CONFIG_DIR"/*.kbd
+        sudo cp "$SCRIPT_DIR"/*.kbd "$KANATA_CONFIG_DIR"/
+        sudo chown root:wheel "$KANATA_CONFIG_DIR" "$KANATA_CONFIG_DIR"/*.kbd
+        sudo chmod 755 "$KANATA_CONFIG_DIR"
+        sudo chmod 644 "$KANATA_CONFIG_DIR"/*.kbd
+        success "Runtime config synced to $KANATA_CONFIG_DIR"
+        CHANGES_MADE=true
+        NEEDS_RELOAD=true
+    fi
+
+    info "Validating runtime config"
+    "$INSTALL_BINARY_PATH" --check --cfg "$KANATA_CONFIG" >/dev/null
+    success "Runtime config is valid"
 }
 
 # ============================================================================
@@ -190,12 +258,13 @@ generate_plist() {
     <string>${PLIST_NAME}</string>
     <key>ProgramArguments</key>
     <array>
-        <string>${KANATA_BINARY}</string>
+        <string>${INSTALL_BINARY_PATH}</string>
         <string>-c</string>
         <string>${KANATA_CONFIG}</string>
         <string>-n</string>
         <string>-p</string>
         <string>${KANATA_PORT}</string>
+        <string>--no-wait</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
@@ -277,18 +346,52 @@ is_service_running() {
 }
 
 stop_karabiner_elements() {
-    # Check if Karabiner console user server is running
-    local karabiner_plist="/Library/LaunchAgents/org.pqrs.karabiner.karabiner_console_user_server.plist"
+    # Keep the Karabiner VirtualHIDDevice daemon running; stop only the
+    # Karabiner-Elements services that grab physical keyboards exclusively.
+    local uid
+    local stopped=false
+    uid=$(id -u)
 
-    if launchctl print "gui/$(id -u)/org.pqrs.karabiner.karabiner_console_user_server" &>/dev/null 2>&1; then
-        info "Stopping Karabiner-Elements (cannot run simultaneously with kanata)"
-        launchctl bootout "gui/$(id -u)" "$karabiner_plist" 2>/dev/null || true
-        success "Karabiner-Elements stopped"
+    local gui_labels=(
+        "org.pqrs.service.agent.Karabiner-Menu"
+        "org.pqrs.service.agent.Karabiner-NotificationWindow"
+        "org.pqrs.service.agent.Karabiner-Core-Service-rev2"
+        "org.pqrs.service.agent.karabiner_console_user_server"
+        "org.pqrs.service.agent.karabiner_session_monitor"
+    )
+    local system_labels=(
+        "org.pqrs.service.daemon.Karabiner-Core-Service"
+    )
+
+    for label in "${gui_labels[@]}"; do
+        if launchctl print "gui/${uid}/${label}" &>/dev/null 2>&1; then
+            if [[ "$stopped" == "false" ]]; then
+                info "Stopping Karabiner-Elements (cannot run simultaneously with kanata)"
+            fi
+            launchctl bootout "gui/${uid}/${label}" 2>/dev/null || true
+            stopped=true
+        fi
+    done
+
+    for label in "${system_labels[@]}"; do
+        if launchctl print "system/${label}" &>/dev/null 2>&1; then
+            if [[ "$stopped" == "false" ]]; then
+                info "Stopping Karabiner-Elements (cannot run simultaneously with kanata)"
+            fi
+            sudo launchctl bootout "system/${label}" 2>/dev/null || true
+            stopped=true
+        fi
+    done
+
+    if [[ "$stopped" == "true" ]]; then
+        success "Karabiner-Elements stopped; VirtualHIDDevice daemon left running"
     fi
 }
 
 start_kanata_service() {
     header "Kanata Service"
+
+    stop_karabiner_elements
 
     if [[ "$NEEDS_RELOAD" == "true" ]]; then
         if is_service_running; then
@@ -297,8 +400,6 @@ start_kanata_service() {
             sleep 1
         fi
 
-        stop_karabiner_elements
-
         info "Starting kanata service"
         sudo launchctl bootstrap system "$LAUNCH_DAEMON_PATH"
         success "Kanata service started"
@@ -306,8 +407,6 @@ start_kanata_service() {
     elif is_service_running; then
         skip "Kanata service already running"
     else
-        stop_karabiner_elements
-
         info "Starting kanata service"
         sudo launchctl bootstrap system "$LAUNCH_DAEMON_PATH"
         success "Kanata service started"
@@ -326,7 +425,8 @@ print_permissions_guide() {
     echo ""
     echo "  1. Input Monitoring (required for kanata to capture keystrokes)"
     echo "     → System Settings → Privacy & Security → Input Monitoring"
-    echo "     → Add: /usr/local/bin/kanata (or $KANATA_BINARY)"
+    echo "     → Add: $INSTALL_BINARY_PATH"
+    echo "     → Remove stale entries for old repo paths if they exist"
     echo ""
     echo "  2. Accessibility (required for Hammerspoon overlays)"
     echo "     → System Settings → Privacy & Security → Accessibility"
@@ -347,6 +447,14 @@ verify_setup() {
     header "Verification"
 
     local all_ok=true
+
+    # Check runtime config
+    if [[ -f "$KANATA_CONFIG" ]] && "$INSTALL_BINARY_PATH" --check --cfg "$KANATA_CONFIG" >/dev/null; then
+        success "Runtime config is valid at $KANATA_CONFIG"
+    else
+        error "Runtime config is missing or invalid at $KANATA_CONFIG"
+        all_ok=false
+    fi
 
     # Check daemon
     if is_service_running; then
@@ -403,6 +511,15 @@ uninstall() {
         success "Plist removed"
     else
         skip "Plist not found"
+    fi
+
+    header "Removing Runtime Config"
+    if [[ -d "$KANATA_CONFIG_DIR" ]]; then
+        info "Removing $KANATA_CONFIG_DIR"
+        sudo rm -rf "$KANATA_CONFIG_DIR"
+        success "Runtime config removed"
+    else
+        skip "Runtime config not found at $KANATA_CONFIG_DIR"
     fi
 
     header "Removing Binary"
@@ -470,7 +587,7 @@ main() {
     success "Kanata binary found"
 
     check_kanata_config
-    success "Kanata config found"
+    success "Kanata source config found"
 
     # Install dependencies
     install_hammerspoon
@@ -478,6 +595,7 @@ main() {
 
     # Install kanata
     install_kanata_binary
+    install_kanata_config
     install_launch_daemon
 
     # Setup Hammerspoon

@@ -43,7 +43,7 @@ Each layer change emits a `LayerChange` event via TCP (port 5829). Hammerspoon c
 
 ### Test Changes Manually
 ```bash
-sudo /Users/mike/dev/personal/karabiner/kanata/kanata_cmd --cfg /Users/mike/dev/personal/karabiner/kanata/kanata.kbd -p 5829
+sudo /usr/local/bin/kanata --cfg /usr/local/etc/kanata/kanata.kbd -p 5829
 ```
 
 ### Reload Config (While Running)
@@ -193,8 +193,8 @@ The reload notification uses `terminal-notifier`. Install with:
 brew install terminal-notifier
 ```
 
-### 10. Config Path is Hardcoded
-The launchd plist has an absolute path to the config. If you move the repo, update `com.kanata.plist`.
+### 10. Runtime Config Path is Stable
+The launchd plist points to `/usr/local/etc/kanata/kanata.kbd`, not the repo. Edit repo `.kbd` files, then run `./setup.sh` to sync them into the runtime config directory.
 
 ### 11. TCP Port for Layer Events (Critical!)
 The `-p 5829` flag is **required** to enable the TCP server. Without it, kanata won't emit layer events and Hammerspoon overlay won't work. The JSON format is:
@@ -238,6 +238,7 @@ In `windows.kbd`:
 1. Create a new `.kbd` file with `defalias` and `deflayermap`
 2. Include it in `kanata.kbd`: `(include mynewfile.kbd)`
 3. Add entry point in leader layer: `x (layer-while-held newlayer)`
+4. Run `./setup.sh` to sync repo `.kbd` files into `/usr/local/etc/kanata`
 
 ---
 
@@ -250,7 +251,7 @@ Hammerspoon displays a visual overlay showing available key mappings when kanata
 2. Symlink the config:
    ```bash
    rm -rf ~/.hammerspoon
-   ln -s /Users/mike/dev/personal/karabiner/kanata/hammerspoon ~/.hammerspoon
+   ln -s /Users/mike/dev/personal-projects/tools-and-automation/karabiner/kanata/hammerspoon ~/.hammerspoon
    ```
 3. Grant Hammerspoon Accessibility permissions in System Settings
 4. Start/reload Hammerspoon

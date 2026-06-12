@@ -38,7 +38,7 @@ export const menuCategories: MenuCategory[] = [
       { key: 'n', description: APP_NAMES.NOTION },
       { key: 'p', description: APP_NAMES.PERPLEXITY },
       { key: 's', description: APP_NAMES.SLACK },
-      { key: 't', description: 'Terminal' },
+      { key: 't', description: APP_NAMES.CMUX },
       { key: 'v', description: APP_NAMES.VSCODE },
       { key: 'w', description: APP_NAMES.TEAMS },
       { key: 'z', description: APP_NAMES.CURSOR },

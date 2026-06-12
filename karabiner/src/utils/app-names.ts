@@ -63,6 +63,10 @@ export const APPS = {
     name: 'Ghostty',
     regex: '^com\\.ghostty\\.Ghostty$',
   },
+  CMUX: {
+    name: 'cmux',
+    regex: '^com\\.cmuxterm\\.app$',
+  },
   WEZTERM: {
     name: 'WezTerm',
     regex: '^com\\.github\\.wez\\.wezterm$',
@@ -151,6 +155,7 @@ export const APP_REGEXES: AppsWithRegex = {
   BRAVE: APPS.BRAVE.regex,
   CHATGPT_ATLAS: APPS.CHATGPT_ATLAS.regex,
   CHROME: APPS.CHROME.regex,
+  CMUX: APPS.CMUX.regex,
   CURSOR: APPS.CURSOR.regex,
   DIA: APPS.DIA.regex,
   FIGMA: APPS.FIGMA.regex,

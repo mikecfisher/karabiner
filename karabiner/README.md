@@ -56,7 +56,7 @@ Launch applications quickly:
 | `p` | Perplexity         |
 | `r` | Reflect            |
 | `s` | Slack              |
-| `t` | WezTerm (Terminal) |
+| `t` | cmux (Terminal) |
 | `v` | VS Code            |
 | `w` | Microsoft Teams    |
 | `x` | Lexicon            |

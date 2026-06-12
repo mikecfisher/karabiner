@@ -30,10 +30,11 @@ The setup script is **idempotent** - safe to run multiple times. It will skip st
 1. **Checks prerequisites** - macOS, Xcode CLI tools, Homebrew, Karabiner driver
 2. **Installs dependencies** - Hammerspoon, terminal-notifier (via Homebrew)
 3. **Installs kanata binary** - Copies to `/usr/local/bin/kanata`
-4. **Installs LaunchDaemon** - Creates `/Library/LaunchDaemons/com.kanata.plist`
-5. **Configures Hammerspoon** - Symlinks `~/.hammerspoon` to the repo's config
-6. **Starts the service** - Bootstraps the LaunchDaemon
-7. **Verifies setup** - Checks daemon is running and TCP server responds
+4. **Syncs runtime config** - Copies repo `*.kbd` files to `/usr/local/etc/kanata`
+5. **Installs LaunchDaemon** - Creates `/Library/LaunchDaemons/com.kanata.plist` using stable runtime paths
+6. **Configures Hammerspoon** - Symlinks `~/.hammerspoon` to the repo's config
+7. **Starts the service** - Bootstraps the LaunchDaemon
+8. **Verifies setup** - Checks runtime config, daemon, and TCP server
 
 ### Script Options
 
@@ -53,8 +54,9 @@ Kanata needs permission to capture keyboard input.
 
 1. Open **System Settings → Privacy & Security → Input Monitoring**
 2. Click `+`
-3. Press `Cmd+Shift+G` and enter the path to `kanata_cmd` in this repo
+3. Press `Cmd+Shift+G` and enter `/usr/local/bin/kanata`
 4. Enable the checkbox
+5. Remove stale Kanata entries that point at old repo locations
 
 > **Note**: After adding, restart the service: `sudo launchctl kickstart -k system/com.kanata`
 
@@ -72,6 +74,18 @@ Hammerspoon needs permission to display overlays.
 1. Open Hammerspoon from Applications
 2. Grant any permission prompts
 3. Hammerspoon will auto-connect to Kanata's TCP server
+
+## Runtime Layout
+
+The repo is the editable source of truth. `./setup.sh` installs stable runtime paths so moving the repo does not break launchd or macOS Input Monitoring:
+
+```text
+/usr/local/bin/kanata                 # installed binary
+/usr/local/etc/kanata/*.kbd           # synced runtime config
+/Library/LaunchDaemons/com.kanata.plist
+```
+
+After editing repo `.kbd` files, rerun `./setup.sh` to sync `/usr/local/etc/kanata` and restart Kanata if needed.
 
 ## Architecture
 
@@ -110,7 +124,7 @@ Press `.` and `/` together (chord) to enter leader mode.
 | `p` | Perplexity |
 | `r` | Reflect |
 | `s` | Slack |
-| `t` | Ghostty |
+| `t` | cmux |
 | `v` | VS Code |
 | `z` | Cursor |
 
@@ -168,6 +182,9 @@ sudo launchctl bootout system/com.kanata
 # Start service
 sudo launchctl bootstrap system /Library/LaunchDaemons/com.kanata.plist
 
+# Validate installed runtime config
+/usr/local/bin/kanata --check --cfg /usr/local/etc/kanata/kanata.kbd
+
 # View logs
 tail -f /var/log/kanata.error.log
 
@@ -181,8 +198,8 @@ nc -z localhost 5829 && echo "OK" || echo "Not responding"
 
 The binary isn't in Input Monitoring, or the permission was revoked.
 
-1. Remove the binary from Input Monitoring
-2. Re-add it
+1. Remove stale Kanata entries from Input Monitoring
+2. Re-add `/usr/local/bin/kanata`
 3. Restart the service: `sudo launchctl kickstart -k system/com.kanata`
 
 ### Kanata won't start / crashes immediately
@@ -234,7 +251,8 @@ You're using the Homebrew version of kanata, which doesn't include the `cmd` fea
    )
    ```
 4. Update `hammerspoon/kanata.lua` with the new mapping for the overlay
-5. Reload: `Leader → k → r`
+5. Run `./setup.sh` to sync the runtime config and restart Kanata if needed
+6. Reload Hammerspoon if the overlay mapping changed
 
 ### Finding Bundle IDs
 
@@ -259,6 +277,7 @@ mdls -name kMDItemCFBundleIdentifier /Applications/AppName.app
 
 This removes:
 - LaunchDaemon service and plist
+- Runtime config from `/usr/local/etc/kanata`
 - Binary from `/usr/local/bin`
 - Optionally, the Hammerspoon symlink
 
