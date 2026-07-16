@@ -5,6 +5,7 @@
 ;; Aliases for window management commands
 (defalias
   win-center (cmd open -g "raycast://extensions/raycast/window-management/center-third")
+  win-center-two-thirds (cmd open -g "raycast-x://extensions/raycast/window-management/center-two-thirds")
   win-maximize (cmd open -g "raycast://extensions/raycast/window-management/maximize")
   win-left-half (cmd open -g "raycast://extensions/raycast/window-management/left-half")
   win-bottom-half (cmd open -g "raycast://extensions/raycast/window-management/bottom-half")
@@ -19,6 +20,7 @@
 ;; Windows layer - window management shortcuts (vim-style)
 (deflayermap (windows)
   c (multi @win-center (layer-switch base))
+  w (multi @win-center-two-thirds (layer-switch base))
   f (multi @win-maximize (layer-switch base))
   h (multi @win-left-half (layer-switch base))
   j (multi @win-bottom-half (layer-switch base))

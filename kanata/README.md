@@ -136,6 +136,8 @@ Press `.` and `/` together (chord) to enter leader mode.
 | `j` | Bottom half |
 | `k` | Top half |
 | `l` | Right half |
+| `c` | Center |
+| `w` | Wide center |
 | `f` | Maximize |
 
 ### Other Layers
