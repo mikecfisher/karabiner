@@ -15,10 +15,10 @@
     "validate": "bun run lint && bun run typecheck"
   },
   "dependencies": {
-    "karabiner.ts": "^1.36.0",
-    "typescript": "^5.7.2"
+    "karabiner.ts": "^1.38.0",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.11"
+    "@biomejs/biome": "^2.5.4"
   }
 }

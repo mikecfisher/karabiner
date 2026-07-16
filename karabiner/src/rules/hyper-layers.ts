@@ -11,7 +11,6 @@ export const browserShortcuts = hyperLayer('b', 'browser-shortcuts').manipulator
   map('h').to$(URLS.HACKER_NEWS),
   map('f').to$(URLS.FACEBOOK),
   map('r').to$(URLS.REDDIT),
-  map('p').to$(URLS.PERPLEXITY),
   map('y').to$(URLS.YOUTUBE),
   map('l').to$(URLS.LINKEDIN),
   map('c').to$(URLS.CHATGPT),

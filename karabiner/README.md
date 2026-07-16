@@ -29,7 +29,6 @@ The leader key system uses a three-step sequence inspired by Vim's leader key co
 - `E` - Emoji shortcuts
 - `C` - Code snippets
 - `N` - Clear notifications (immediate action)
-- `T` - Tiling/AeroSpace commands
 
 **Press `Escape` at any time to exit leader mode**
 
@@ -53,7 +52,6 @@ Launch applications quickly:
 | `m` | **Messaging apps sub-menu** (see below) |
 | `n` | Notion             |
 | `o` | iOS Simulator      |
-| `p` | Perplexity         |
 | `r` | Reflect            |
 | `s` | Slack              |
 | `t` | cmux (Terminal) |
@@ -100,6 +98,7 @@ Control window positions via Raycast:
 | Key | Action              |
 | --- | ------------------- |
 | `c` | Center window       |
+| `w` | Wide center         |
 | `f` | Maximize/Fullscreen |
 | `h` | Left half           |
 | `j` | Bottom half         |
@@ -122,7 +121,6 @@ Open websites directly:
 | `g` | GitHub      |
 | `h` | Hacker News |
 | `l` | LinkedIn    |
-| `p` | Perplexity  |
 | `r` | Reddit      |
 | `t` | Twitter     |
 | `y` | YouTube     |

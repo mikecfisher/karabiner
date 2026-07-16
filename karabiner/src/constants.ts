@@ -1,6 +1,7 @@
 export const RAYCAST = {
   WINDOW: {
-    CENTER: "open -g 'raycast://extensions/raycast/window-management/center-half'",
+    CENTER: "open -g 'raycast://extensions/raycast/window-management/center-third'",
+    CENTER_TWO_THIRDS: "open -g 'raycast://extensions/raycast/window-management/center-two-thirds'",
     TOP: "open -g 'raycast://extensions/raycast/window-management/top-half'",
     BOTTOM: "open -g 'raycast://extensions/raycast/window-management/bottom-half'",
     LEFT: "open -g 'raycast://extensions/raycast/window-management/left-half'",
@@ -17,14 +18,14 @@ export const RAYCAST = {
     REACT_NATIVE: 'React Native Dev',
   },
   SYSTEM: {
-    DO_NOT_DISTURB: "open 'raycast://extensions/do-not-disturb/toggle'",
-    CAMERA: "open 'raycast://extensions/raycast/system/open-camera'",
-    EMOJI_SEARCH: "open 'raycast://extensions/raycast/emoji-symbols/search-emoji-symbols'",
-    GOOGLE_SEARCH: "open 'raycast://extensions/mblode/google-search/index'",
-    CLIPBOARD_HISTORY: "open 'raycast://extensions/raycast/clipboard-history/clipboard-history'",
-    AI_CHAT: "open 'raycast://extensions/raycast/raycast-ai/ai-chat'",
-    DISMISS_NOTIFICATIONS: "open 'raycast://script-commands/dismiss-notifications'",
-    CONFETTI: "open 'raycast://extensions/raycast/raycast/confetti'",
+    DO_NOT_DISTURB: "open -g 'raycast://extensions/do-not-disturb/toggle'",
+    CAMERA: "open -g 'raycast://extensions/raycast/system/open-camera'",
+    EMOJI_SEARCH: "open -g 'raycast://extensions/raycast/emoji-symbols/search-emoji-symbols'",
+    GOOGLE_SEARCH: "open -g 'raycast://extensions/mblode/google-search/index'",
+    CLIPBOARD_HISTORY: "open -g 'raycast://extensions/raycast/clipboard-history/clipboard-history'",
+    AI_CHAT: "open -g 'raycast://extensions/raycast/raycast-ai/ai-chat'",
+    DISMISS_NOTIFICATIONS: "open -g 'raycast://script-commands/dismiss-notifications'",
+    CONFETTI: "open -g 'raycast://extensions/raycast/raycast/confetti'",
   },
 } as const;
 
@@ -34,7 +35,6 @@ export const URLS = {
   HACKER_NEWS: "open 'https://news.ycombinator.com'",
   FACEBOOK: "open 'https://facebook.com'",
   REDDIT: "open 'https://reddit.com'",
-  PERPLEXITY: "open 'https://perplexity.com'",
   GITHUB: "open 'https://github.com'",
   YOUTUBE: "open 'https://youtube.com'",
   LINKEDIN: "open 'https://linkedin.com'",

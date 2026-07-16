@@ -85,9 +85,6 @@ export const APPS = {
   PASSWORD_MANAGER: {
     name: '1Password',
   },
-  PERPLEXITY: {
-    name: 'Perplexity',
-  },
   REFLECT: {
     name: 'Reflect',
   },

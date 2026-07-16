@@ -1,4 +1,5 @@
 import {
+  ifExpression,
   ifVar,
   map,
   mapSimultaneous,
@@ -8,6 +9,7 @@ import {
   toKey,
   toPaste,
   toRemoveNotificationMessage,
+  toSetVarExpression,
   toUnsetVar,
   type FromKeyParam,
   type ToEvent,
@@ -46,6 +48,20 @@ export const exitLeader = () => [toUnsetVar('leader'), toRemoveNotificationMessa
 // Helper function to map a key with an action and exit leader mode
 const leaderAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) => map(key).to(action).to(exitLeader());
 
+// Map a key to cycle through actions on repeated presses. Stays in leader mode while
+// cycling; auto-exits after 500ms without a keypress (any other key cancels the timer,
+// and those keys exit leader mode themselves).
+// Uses KE 15.6 expressions: an undefined counter evaluates to 0, and each press increments it.
+const cycleAction = (key: FromKeyParam, actions: ToEvent[]) =>
+  actions.map((action, i) =>
+    map(key)
+      .condition(ifExpression(`window_cycle % ${actions.length} == ${i}`))
+      .to(action)
+      .to(toSetVarExpression('window_cycle', { expression: 'window_cycle + 1' }))
+      .toDelayedAction(exitLeader(), [])
+      .parameters({ 'basic.to_delayed_action_delay_milliseconds': 500 })
+  );
+
 // Get emoji notification text and manipulators
 const emojiNotificationText = generateEmojiNotificationText();
 const emojiManipulators = generateEmojiManipulators(leaderAction);
@@ -62,10 +78,8 @@ export const leaderKey = rule('Leader Key').manipulators([
   withCondition(ifVar('leader', 0))([
     mapSimultaneous([...leaderKeys], undefined, 250)
       .toVar('leader', 1)
-      .toNotificationMessage(
-        'leader',
-        '(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications (T)iling'
-      ),
+      .toVar('window_cycle', 0)
+      .toNotificationMessage('leader', '(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications'),
   ]),
 
   /**
@@ -113,12 +127,9 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('g', toApp(APP_NAMES.CHROME)),
     leaderAction('i', toApp(APP_NAMES.CHATGPT)),
     // 'm' now opens a sub-menu for messaging apps
-    map('m')
-      .toVar('leader', 'apps_messages')
-      .toNotificationMessage('leader', '(M)essages (W)hatsApp (B)eeper'),
+    map('m').toVar('leader', 'apps_messages').toNotificationMessage('leader', '(M)essages (W)hatsApp (B)eeper'),
     leaderAction('n', toApp(APP_NAMES.NOTION)),
     leaderAction('o', toApp(APP_NAMES.IOS_SIMULATOR)),
-    leaderAction('p', toApp(APP_NAMES.PERPLEXITY)),
     leaderAction('r', toApp(APP_NAMES.REFLECT)),
     leaderAction('s', toApp(APP_NAMES.SLACK)),
     leaderAction('t', toApp(APP_NAMES.CMUX)),
@@ -164,7 +175,13 @@ export const leaderKey = rule('Leader Key').manipulators([
    * perform the corresponding window management action and exit leader mode.
    */
   withCondition(ifVar('leader', 'window'))([
-    leaderAction('c', to$(RAYCAST.WINDOW.CENTER)),
+    // c cycles center → wide center → fullscreen on repeated presses without leaving leader mode
+    ...cycleAction('c', [
+      to$(RAYCAST.WINDOW.CENTER),
+      to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS),
+      to$(RAYCAST.WINDOW.MAXIMIZE),
+    ]),
+    leaderAction('w', to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS)),
     leaderAction('f', to$(RAYCAST.WINDOW.MAXIMIZE)),
     leaderAction('h', to$(RAYCAST.WINDOW.LEFT)),
     leaderAction('j', to$(RAYCAST.WINDOW.BOTTOM)),
@@ -187,7 +204,6 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('g', to$(URLS.GITHUB)),
     leaderAction('h', to$(URLS.HACKER_NEWS)),
     leaderAction('l', to$(URLS.LINKEDIN)),
-    leaderAction('p', to$(URLS.PERPLEXITY)),
     leaderAction('r', to$(URLS.REDDIT)),
     leaderAction('t', to$(URLS.TWITTER)),
     leaderAction('y', to$(URLS.YOUTUBE)),
