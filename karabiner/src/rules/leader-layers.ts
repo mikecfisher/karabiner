@@ -52,15 +52,23 @@ const leaderAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) => map(key
 // cycling; auto-exits after 500ms without a keypress (any other key cancels the timer,
 // and those keys exit leader mode themselves).
 // Uses KE 15.6 expressions: an undefined counter evaluates to 0, and each press increments it.
-const cycleAction = (key: FromKeyParam, actions: ToEvent[]) =>
+const cycleAction = (key: FromKeyParam, counter: string, actions: ToEvent[]) =>
   actions.map((action, i) =>
     map(key)
-      .condition(ifExpression(`window_cycle % ${actions.length} == ${i}`))
+      .condition(ifExpression(`${counter} % ${actions.length} == ${i}`))
       .to(action)
-      .to(toSetVarExpression('window_cycle', { expression: 'window_cycle + 1' }))
+      .to(toSetVarExpression(counter, { expression: `${counter} + 1` }))
       .toDelayedAction(exitLeader(), [])
       .parameters({ 'basic.to_delayed_action_delay_milliseconds': 500 })
   );
+
+// Repeat the same action while keeping leader mode open. Raycast's directional
+// half-window commands handle their own 1/2 → 2/3 → 1/3 size cycling.
+const repeatAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) =>
+  map(key)
+    .to(action)
+    .toDelayedAction(exitLeader(), [])
+    .parameters({ 'basic.to_delayed_action_delay_milliseconds': 500 });
 
 // Get emoji notification text and manipulators
 const emojiNotificationText = generateEmojiNotificationText();
@@ -78,7 +86,8 @@ export const leaderKey = rule('Leader Key').manipulators([
   withCondition(ifVar('leader', 0))([
     mapSimultaneous([...leaderKeys], undefined, 250)
       .toVar('leader', 1)
-      .toVar('window_cycle', 0)
+      .toVar('window_center_cycle', 0)
+      .toVar('window_maximize_cycle', 0)
       .toNotificationMessage('leader', '(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications'),
   ]),
 
@@ -176,17 +185,17 @@ export const leaderKey = rule('Leader Key').manipulators([
    */
   withCondition(ifVar('leader', 'window'))([
     // c cycles center → wide center → fullscreen on repeated presses without leaving leader mode
-    ...cycleAction('c', [
+    ...cycleAction('c', 'window_center_cycle', [
       to$(RAYCAST.WINDOW.CENTER),
       to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS),
       to$(RAYCAST.WINDOW.MAXIMIZE),
     ]),
     leaderAction('w', to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS)),
-    leaderAction('f', to$(RAYCAST.WINDOW.MAXIMIZE)),
-    leaderAction('h', to$(RAYCAST.WINDOW.LEFT)),
-    leaderAction('j', to$(RAYCAST.WINDOW.BOTTOM)),
-    leaderAction('k', to$(RAYCAST.WINDOW.TOP)),
-    leaderAction('l', to$(RAYCAST.WINDOW.RIGHT)),
+    ...cycleAction('f', 'window_maximize_cycle', [to$(RAYCAST.WINDOW.MAXIMIZE), to$(RAYCAST.WINDOW.RESTORE)]),
+    repeatAction('h', to$(RAYCAST.WINDOW.LEFT)),
+    repeatAction('j', to$(RAYCAST.WINDOW.BOTTOM)),
+    repeatAction('k', to$(RAYCAST.WINDOW.TOP)),
+    repeatAction('l', to$(RAYCAST.WINDOW.RIGHT)),
     leaderAction('[', to$(RAYCAST.WINDOW.PREVIOUS_DISPLAY)),
     leaderAction(']', to$(RAYCAST.WINDOW.NEXT_DISPLAY)),
     leaderAction('hyphen', to$(RAYCAST.WINDOW.PREVIOUS_DESKTOP)),

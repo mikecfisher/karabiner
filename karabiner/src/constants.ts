@@ -7,6 +7,7 @@ export const RAYCAST = {
     LEFT: "open -g 'raycast://extensions/raycast/window-management/left-half'",
     RIGHT: "open -g 'raycast://extensions/raycast/window-management/right-half'",
     MAXIMIZE: "open -g 'raycast://extensions/raycast/window-management/maximize'",
+    RESTORE: "open -g 'raycast://extensions/raycast/window-management/restore'",
     NEXT_DISPLAY: "open -g 'raycast://extensions/raycast/window-management/next-display'",
     PREVIOUS_DISPLAY: "open -g 'raycast://extensions/raycast/window-management/previous-display'",
     NEXT_DESKTOP: "open -g 'raycast://extensions/raycast/window-management/next-desktop'",

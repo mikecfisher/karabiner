@@ -97,13 +97,13 @@ Control window positions via Raycast:
 
 | Key | Action              |
 | --- | ------------------- |
-| `c` | Center window       |
+| `c` | Cycle center widths |
 | `w` | Wide center         |
-| `f` | Maximize/Fullscreen |
-| `h` | Left half           |
-| `j` | Bottom half         |
-| `k` | Top half            |
-| `l` | Right half          |
+| `f` | Maximize/restore    |
+| `h` | Cycle left sizes    |
+| `j` | Cycle bottom sizes  |
+| `k` | Cycle top sizes     |
+| `l` | Cycle right sizes   |
 | `[` | Previous display    |
 | `]` | Next display        |
 | `-` | Previous desktop    |
