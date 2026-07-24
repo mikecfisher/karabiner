@@ -1,29 +1,23 @@
 # karabiner
 
-Personal macOS keyboard-automation workspace containing two related remapping setups:
-
-- `karabiner/` — a Karabiner-Elements configuration generated from TypeScript with `karabiner.ts`.
-- `kanata/` — a Kanata-based configuration with Hammerspoon visual overlays and a setup script for running Kanata as a macOS service.
-
-Both setups implement a Vim-inspired leader-key workflow for app launching, browser/navigation shortcuts, window management, Raycast commands, system actions, and editor-friendly modifier behavior.
+Personal macOS Karabiner-Elements configuration generated from TypeScript with `karabiner.ts`.
 
 ## Key features
 
-- Leader key activated by pressing `.` and `/` together.
-- Layered app, browser, window, Raycast, system, and messaging shortcuts.
-- Caps Lock remapping patterns for Escape/Control or editor-specific Control behavior.
-- Vim-style navigation helpers for apps such as Finder, Slack, browsers, and Lexicon.
-- Optional Hammerspoon overlays in the Kanata setup to show active layers and available keys.
+- Leader chord activated by pressing `.` and `/` together.
+- Layered app and system shortcuts.
+- Caps Lock behavior for Escape/Control and app-specific Control handling.
+- Window management and app-specific Vim-style navigation.
 
-## Rough stack
+## Stack
 
 - macOS
-- Karabiner-Elements / `karabiner.ts` / Bun / TypeScript in `karabiner/`
-- Kanata, Hammerspoon, LaunchDaemon config, and shell setup scripts in `kanata/`
+- Karabiner-Elements
+- `karabiner.ts`
+- Bun
+- TypeScript
 
 ## Getting started
-
-For the Karabiner-Elements generator:
 
 ```bash
 cd karabiner
@@ -32,11 +26,6 @@ bun run generate
 bun run apply
 ```
 
-For the Kanata setup:
+Run `bun run validate` from `karabiner/` to check formatting and types.
 
-```bash
-cd kanata
-./setup.sh
-```
-
-See the nested READMEs in `karabiner/` and `kanata/` for the full shortcut reference, prerequisites, permissions, and uninstall instructions.
+See [`karabiner/README.md`](karabiner/README.md) for the shortcut reference and customization instructions.
