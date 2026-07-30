@@ -29,7 +29,7 @@ export const menuCategories: MenuCategory[] = [
     options: [
       { key: 'a', description: APP_NAMES.AKIFLOW },
       { key: 'b', description: 'Browser' },
-      { key: 'c', description: APP_NAMES.ZED },
+      { key: 'c', description: APP_NAMES.CURSOR },
       { key: 'd', description: APP_NAMES.DISCORD },
       { key: 'f', description: APP_NAMES.FINDER },
       { key: 'g', description: APP_NAMES.CHROME },
@@ -40,7 +40,16 @@ export const menuCategories: MenuCategory[] = [
       { key: 't', description: APP_NAMES.CMUX },
       { key: 'v', description: APP_NAMES.VSCODE },
       { key: 'w', description: APP_NAMES.TEAMS },
-      { key: 'z', description: APP_NAMES.CURSOR },
+      { key: 'z', description: APP_NAMES.ZED },
+    ],
+  },
+  {
+    key: 'i',
+    name: 'AI',
+    varValue: 'ai',
+    options: [
+      { key: 'c', description: APP_NAMES.CLAUDE },
+      { key: 'g', description: APP_NAMES.CHATGPT },
     ],
   },
   {
@@ -64,7 +73,7 @@ export const menuCategories: MenuCategory[] = [
     options: [
       { key: 'c', description: 'Center↻(repeat to cycle)' },
       { key: 'w', description: 'Wide Center' },
-      { key: 'f', description: 'Maximize↔Restore' },
+      { key: 'f', description: 'Maximize↻' },
       { key: 'h', description: 'Left↻' },
       { key: 'j', description: 'Bottom↻' },
       { key: 'k', description: 'Top↻' },

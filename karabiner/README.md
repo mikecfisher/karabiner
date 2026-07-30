@@ -22,6 +22,7 @@ The leader key system uses a three-step sequence inspired by Vim's leader key co
 **Categories**:
 
 - `A` - Apps
+- `I` - AI desktop apps
 - `R` - Raycast commands
 - `W` - Window management
 - `B` - Browser shortcuts (open websites)
@@ -72,6 +73,15 @@ After pressing `m` in the Apps menu, you'll see another menu:
 | `b` | Beeper      |
 
 Example: `./` → `A` → `M` → `M` opens Messages app
+
+---
+
+#### AI Desktop Apps (`./` → `I`)
+
+| Key | Application |
+| --- | ----------- |
+| `c` | Claude      |
+| `g` | ChatGPT     |
 
 ---
 

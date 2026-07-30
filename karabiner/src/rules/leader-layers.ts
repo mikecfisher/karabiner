@@ -42,8 +42,21 @@ import { toClearNotifications, toOpenChatGPTAtlas } from '../utils/utils';
  *ARC
  **/
 
-// Helper function to exit leader mode
-export const exitLeader = () => [toUnsetVar('leader'), toRemoveNotificationMessage('leader')];
+// Window keys that step through several sizes on repeated presses. Each key owns a
+// `cycle_<key>` counter, and listing them here is what keeps the counters and the
+// resets in exitLeader() from drifting apart.
+const windowCycles: Array<[FromKeyParam, ToEvent[]]> = [
+  ['c', [to$(RAYCAST.WINDOW.CENTER), to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS), to$(RAYCAST.WINDOW.MAXIMIZE)]],
+  ['f', [to$(RAYCAST.WINDOW.MAXIMIZE), to$(RAYCAST.WINDOW.ALMOST_MAXIMIZE), to$(RAYCAST.WINDOW.RESTORE)]],
+];
+
+// Helper function to exit leader mode; also clears the cycle counters so every leader
+// session starts each cycle at its first position
+export const exitLeader = () => [
+  toUnsetVar('leader'),
+  ...windowCycles.map(([key]) => toUnsetVar(`cycle_${key}`)),
+  toRemoveNotificationMessage('leader'),
+];
 
 // Helper function to map a key with an action and exit leader mode
 const leaderAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) => map(key).to(action).to(exitLeader());
@@ -52,12 +65,12 @@ const leaderAction = (key: FromKeyParam, action: ToEvent | ToEvent[]) => map(key
 // cycling; auto-exits after 500ms without a keypress (any other key cancels the timer,
 // and those keys exit leader mode themselves).
 // Uses KE 15.6 expressions: an undefined counter evaluates to 0, and each press increments it.
-const cycleAction = (key: FromKeyParam, counter: string, actions: ToEvent[]) =>
+const cycleAction = (key: FromKeyParam, actions: ToEvent[]) =>
   actions.map((action, i) =>
     map(key)
-      .condition(ifExpression(`${counter} % ${actions.length} == ${i}`))
+      .condition(ifExpression(`cycle_${key} % ${actions.length} == ${i}`))
       .to(action)
-      .to(toSetVarExpression(counter, { expression: `${counter} + 1` }))
+      .to(toSetVarExpression(`cycle_${key}`, { expression: `cycle_${key} + 1` }))
       .toDelayedAction(exitLeader(), [])
       .parameters({ 'basic.to_delayed_action_delay_milliseconds': 500 })
   );
@@ -86,9 +99,10 @@ export const leaderKey = rule('Leader Key').manipulators([
   withCondition(ifVar('leader', 0))([
     mapSimultaneous([...leaderKeys], undefined, 250)
       .toVar('leader', 1)
-      .toVar('window_center_cycle', 0)
-      .toVar('window_maximize_cycle', 0)
-      .toNotificationMessage('leader', '(A)pps (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications'),
+      .toNotificationMessage(
+        'leader',
+        '(A)pps (I)AI (R)aycast (W)indow (B)rowser (S)ystem (E)moji (C)ode (N)otifications'
+      ),
   ]),
 
   /**
@@ -129,7 +143,7 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('1', toApp(APP_NAMES.PASSWORD_MANAGER)),
     leaderAction('a', toApp(APP_NAMES.AKIFLOW)),
     leaderAction('b', toOpenChatGPTAtlas),
-    leaderAction('c', toApp(APP_NAMES.ZED)),
+    leaderAction('c', toApp(APP_NAMES.CURSOR)),
     leaderAction('d', toApp(APP_NAMES.DISCORD)),
     leaderAction('e', toApp(APP_NAMES.SUPERHUMAN)),
     leaderAction('f', toApp(APP_NAMES.FINDER)),
@@ -146,7 +160,18 @@ export const leaderKey = rule('Leader Key').manipulators([
     leaderAction('w', toApp(APP_NAMES.TEAMS)),
     leaderAction('x', toApp(APP_NAMES.LEXICON)),
     leaderAction('y', toApp(APP_NAMES.FIGMA)),
-    leaderAction('z', toApp(APP_NAMES.CURSOR)),
+    leaderAction('z', toApp(APP_NAMES.ZED)),
+  ]),
+
+  /**
+   * AI Category Actions
+   *
+   * When the 'leader' variable is 'ai' and an action key is pressed,
+   * launch the corresponding AI desktop app and exit leader mode.
+   */
+  withCondition(ifVar('leader', 'ai'))([
+    leaderAction('c', toApp(APP_NAMES.CLAUDE)),
+    leaderAction('g', toApp(APP_NAMES.CHATGPT)),
   ]),
 
   /**
@@ -184,14 +209,10 @@ export const leaderKey = rule('Leader Key').manipulators([
    * perform the corresponding window management action and exit leader mode.
    */
   withCondition(ifVar('leader', 'window'))([
-    // c cycles center → wide center → fullscreen on repeated presses without leaving leader mode
-    ...cycleAction('c', 'window_center_cycle', [
-      to$(RAYCAST.WINDOW.CENTER),
-      to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS),
-      to$(RAYCAST.WINDOW.MAXIMIZE),
-    ]),
+    // c cycles center → wide center → fullscreen, f cycles maximize → almost → restore,
+    // both on repeated presses without leaving leader mode
+    ...windowCycles.flatMap(([key, actions]) => cycleAction(key, actions)),
     leaderAction('w', to$(RAYCAST.WINDOW.CENTER_TWO_THIRDS)),
-    ...cycleAction('f', 'window_maximize_cycle', [to$(RAYCAST.WINDOW.MAXIMIZE), to$(RAYCAST.WINDOW.RESTORE)]),
     repeatAction('h', to$(RAYCAST.WINDOW.LEFT)),
     repeatAction('j', to$(RAYCAST.WINDOW.BOTTOM)),
     repeatAction('k', to$(RAYCAST.WINDOW.TOP)),

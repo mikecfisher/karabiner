@@ -37,6 +37,9 @@ export const APPS = {
     name: 'ChatGPT Atlas',
     regex: '^com\\.openai\\.atlas$',
   },
+  CLAUDE: {
+    name: 'Claude',
+  },
   CHROME: {
     name: 'Google Chrome',
     regex: '^com\\.google\\.Chrome$',
